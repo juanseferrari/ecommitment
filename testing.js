@@ -1,7 +1,6 @@
 (function () {
     // Your JavaScript
-    const switchCheckbox = document.getElementById('mySwitch');
-
+    let switchCheckbox = document.getElementById('mySwitch');
 
     function showEnvironmentDiv(environmentAmount) {
         // Get the div element with class "table-subtotal"
@@ -116,13 +115,15 @@
 
         // Append the style element to the document's head
         document.head.appendChild(style);
-
+        switchCheckbox = document.getElementById('mySwitch');
     } //End function add EnvironmentDiv
 
     function addProductToCart() {
         console.log("addProductToCart")
         if (LS.cart.items) {
             console.log("LSproduct")
+            //datos hardocodeados, esto deberia ser dinamico por cada usuario despues. 
+            //aplicar la lógica del store_id
             const list = [
                 { pid: 190409457, vid: 764647295 }
             ];
@@ -154,6 +155,81 @@
 
         }
     }
+
+    function removeProductToCart() {
+        console.log("removeProductToCart")
+        if (LS.cart.items) {
+            console.log("LSproduct")
+            //datos hardocodeados, esto deberia ser dinamico por cada usuario despues. 
+            //aplicar la lógica del store_id
+            const data = new URLSearchParams();
+            data.append('quantity[1500061560]', 0);
+  
+                fetch('/update/', {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            console.log('success');
+                        } else {
+                            console.log('error');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
+
+
+        }
+        switchCheckbox.checked = false;
+
+    }
+
+    function removeProductFromCart2() {
+        const cartItems = document.querySelectorAll(".js-cart-item");
+      
+        cartItems.forEach((item) => {
+          const itemId = item.dataset.itemId;
+          console.log("itemId: "+ itemId)
+          const quantity = {};
+          quantity[itemId] = 0;
+      
+          const data = new URLSearchParams();
+          data.append('quantity', JSON.stringify(quantity));
+
+          console.log("data remove: "+ data)
+      
+          fetch("/cart/update/", {
+            method: "POST",
+            body: data,
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                console.log("success remove cart");
+              } else {
+                console.log("error remove cart");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        });
+      
+        alert(
+          "Se borrarán todas las variantes y la página se actualizará. Por favor, espere."
+        );
+        window.location.reload();
+      }
+
+
     // Wait for 1 second (1000 milliseconds) and then reload the page
     function reloadPageAfterDelay() {
         setTimeout(function () {
@@ -173,19 +249,24 @@
 
         //Chequear si tiene el producto cargado como bono ambiental.
 
-        for (let p = 0; p < LS.cart.items.length; p++) {
-            if (LS.cart.items[p].id == 190409457) {
-                console.log("item 190409457 existe")
-                switchCheckbox.checked = true;
-            }
-        }
+
 
         console.log("next path")
 
         //Fetch amount to show
+        //Fetch function that sends the whole information of the order and returns the amount to display.
         let environmentAmount = 10
 
+        //function that edits the product variant price for the one of that session.
+
         showEnvironmentDiv(environmentAmount)
+
+        for (let p = 0; p < LS.cart.items.length; p++) {
+            if (LS.cart.items[p].variant_id == 764647295) {
+                console.log("variant 764647295 existe")
+                switchCheckbox.checked = true;
+            }
+        }
 
         // Check the state of the switch when it is clicked
         switchCheckbox.addEventListener('change', function () {
@@ -199,8 +280,12 @@
 
             } else {
                 //REMOVE PRODUCT. 
-
                 console.log('Switch is OFF');
+                //Remove product from cart for the amount given. 
+                removeProductFromCart2();
+
+                // Call the function to initiate the delay and page reload
+                //reloadPageAfterDelay();
             }
         });
 
