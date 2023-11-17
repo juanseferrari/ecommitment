@@ -226,7 +226,6 @@
         alert(
           "Se borrarán todas las variantes y la página se actualizará. Por favor, espere."
         );
-        window.location.reload();
       }
 
 
