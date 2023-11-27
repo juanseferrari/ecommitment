@@ -106,7 +106,7 @@
            }
            
            input:checked + .slider {
-            background-color: #2196F3;
+            background-color: #34a77c;
            }
            
            input:focus + .slider {
@@ -126,6 +126,7 @@
            
            .slider.round:before {
             border-radius: 50%;
+            background-image: "https://juanseferrari.github.io/ecommitment/public/images/earth.svg";
            }
            `;
 
@@ -318,7 +319,7 @@
 
         // Call the function to initiate the delay and page reload
         reloadPageAfterDelay();
-        
+
       }
     });
 
