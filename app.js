@@ -1,6 +1,8 @@
 const express = require('express')
-const app = express()
 const path = require("path");
+const app = express()
+const port = process.env.PORT || 3000;
+
 const indexRouter = require('./src/routes/main-routes');
 
 // view engine setup
@@ -13,30 +15,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
-
-// Middleware to handle JavaScript files in the 'public/js' folder
-app.use('/js', (req, res, next) => {
-  // Check if the request URL starts with '/js'
-  if (req.originalUrl.startsWith('/js')) {
-    // If it does, skip the error handling middleware and serve the JavaScript file directly
-    return next();
-  }
-  // If not, continue to the next middleware (your existing error-handling middleware)
-  next();
-});
+// Handle 404 errors
+app.use((req, res) => {
+    res.status(404).send('404 Not Found');
+  });
 
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-app.listen(process.env.PORT || 5001)
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+})
 
 module.exports = app;
