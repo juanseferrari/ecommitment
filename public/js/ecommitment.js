@@ -257,9 +257,6 @@
     }
 
 
-
-
-
   }
 
 
@@ -309,6 +306,7 @@
         addProductToCart()
 
         // Call the function to initiate the delay and page reload
+        reloadPageAfterDelay();
 
       } else {
         //REMOVE PRODUCT. 
@@ -318,10 +316,9 @@
 
         console.log("log after remove product")
 
-        reloadPageAfterDelay();
-
         // Call the function to initiate the delay and page reload
-        //reloadPageAfterDelay();
+        reloadPageAfterDelay();
+        
       }
     });
 
