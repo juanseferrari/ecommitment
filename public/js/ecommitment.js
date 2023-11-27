@@ -229,7 +229,10 @@
       console.log("item_id")
 
       let body = new URLSearchParams();
-      body.append(`quantity[${item_id}]`, 0);
+      body.append(`quantity[${item_id}]`, "0");
+
+      console.log("Request Body:", body.toString());
+
 
       await fetch("/cart/update/", {
         method: "POST",
@@ -306,7 +309,6 @@
         addProductToCart()
 
         // Call the function to initiate the delay and page reload
-        reloadPageAfterDelay();
 
       } else {
         //REMOVE PRODUCT. 
@@ -315,6 +317,9 @@
         removeUniqueProductFromCart()
 
         console.log("log after remove product")
+
+        reloadPageAfterDelay();
+
         // Call the function to initiate the delay and page reload
         //reloadPageAfterDelay();
       }
