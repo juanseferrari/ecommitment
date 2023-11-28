@@ -237,7 +237,7 @@
   }
 
 
-  function calculator(cart_data,store_data) {
+  async function calculator(cart_data,store_data) {
       console.log("calculator")
 
       //let cart_data = LS.cart
@@ -255,7 +255,7 @@
       console.log(body)
       console.log("calculator body")
 
-      fetch('https://ecommitment-634117e74352.herokuapp.com/api/calculator', {
+      await fetch('https://ecommitment-634117e74352.herokuapp.com/api/calculator', {
         method: 'POST',
         body: body,
         headers: {
@@ -273,9 +273,7 @@
       .then(data => {
         // Handle the parsed JSON data
         console.log('Parsed JSON data:', data);
-    
-        // Perform further actions with the data
-        // ...
+        
     
         // If you need to return the data from this function, you can do so here
         return data;
@@ -288,6 +286,62 @@
 
   }
 
+
+  //NEW CHATGPT FUNCTION
+
+  async function calculate(cart_data, store_data) {
+    console.log("calculator");
+  
+    try {
+      console.log(cart_data);
+      console.log(store_data);
+  
+      let body = JSON.stringify({
+        cart: cart_data,
+        store: store_data
+      });
+    
+      const response = await fetch('https://ecommitment-634117e74352.herokuapp.com/api/calculator', {
+        method: 'POST',
+        body: body,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+  
+      if (!response.ok) {
+        console.error('Error:', response.statusText);
+        return null;
+      }
+  
+      const data = await response.json();
+  
+      // Log the calculator_response within the async function
+      console.log('Parsed JSON data:', data);
+  
+      // If you need to return the data from this function, you can do so here
+      return data;
+    } catch (error) {
+      console.error('Error:', error);
+      return null;
+    }
+  }
+  
+  async function performCalculation() {
+    let calculator_response = await calculate(LS.cart, LS.store);
+  
+    console.log("calculator_response");
+    console.log(calculator_response);
+    console.log(JSON.stringify(calculator_response));
+    console.log("calculator_response");
+  
+    if (calculator_response) {
+      let calculator_quantity = calculator_response.quantity;
+      console.log("calculator_quantity: " + calculator_quantity);
+    }
+    return calculator_response
+  }
+  
   //Check pathname
   console.log(window.location.pathname)
   // Check the current URL path
@@ -295,13 +349,10 @@
 
     //Obtener la data de la calculadora
 
-    let calculator_response = calculator(LS.cart,LS.store)
-    console.log("calculator_response")
-    console.log(calculator_response)
-    console.log(JSON.stringify(calculator_response))
-    console.log("calculator_response")
-    let calculator_quantity = calculator_response.quantity
-    console.log("calculator_quantity: " + calculator_quantity)
+    let calculator_data =  performCalculation();
+    console.log("calculator_data")
+    console.log(calculator_data)
+    console.log("calculator_data")
 
     //Chequear si tiene el producto cargado como bono ambiental.
 
@@ -315,7 +366,7 @@
 
     //function that edits the product variant price for the one of that session.
 
-    showEnvironmentDiv(environmentAmount)
+    showEnvironmentDiv(calculator_data.quantity)
 
     for (let p = 0; p < LS.cart.items.length; p++) {
       if (LS.cart.items[p].variant_id == 771992910) {
