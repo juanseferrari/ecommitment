@@ -18,8 +18,8 @@ app.use(logger('dev'));
 app.use((req, res, next) => {
 
     const allowedOrigins = [
-        'sheetscentraldemo2.mitiendanube.com',
-        "sheetscentral.com"
+        'https://sheetscentraldemo2.mitiendanube.com',
+        "https://sheetscentral.com"
         // Add more origins as needed
       ];
     
