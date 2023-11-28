@@ -10,6 +10,7 @@ router.get('/', mainController.home);
 
 /** APIS */
 router.get('/api/product-data', mainController.productData);
+router.post('/api/calculator', mainController.calculator);
 
 
 module.exports = router;

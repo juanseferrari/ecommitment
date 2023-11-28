@@ -38,7 +38,7 @@
            <div class="switch-amount">$${environmentAmount}</div>
            
            </div>
-           `;
+        `;
 
     subtotalDiv.appendChild(newDiv);
 
@@ -130,12 +130,11 @@
            `;
 
     // Append the style element to the document's head
-                //background-image: url('https://juanseferrari.github.io/ecommitment/public/images/earth.svg');
+    //background-image: url('https://juanseferrari.github.io/ecommitment/public/images/earth.svg');
 
     document.head.appendChild(style);
     switchCheckbox = document.getElementById('mySwitch');
   } //End function add EnvironmentDiv
-  showEnvironmentDiv(2)
 
 
 
@@ -238,6 +237,41 @@
   }
 
 
+  function calculator() {
+      console.log("calculator")
+      console.log("cart")
+      let cart_data = LS.cart
+      let store_data = LS.store
+
+      console.log(cart_data)
+      console.log(store_data)
+
+      let body = JSON.stringify({
+        "cart": cart_data,
+        "store": store_data
+      })
+
+
+      fetch('https://ecommitment-634117e74352.herokuapp.com/api/calculator', {
+        method: 'POST',
+        body,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          console.log(response)
+          if (response.ok) {
+            console.log('success');
+          } else {
+            console.log('error');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+
+  }
 
   //Check pathname
   console.log(window.location.pathname)

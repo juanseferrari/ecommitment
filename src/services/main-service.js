@@ -27,6 +27,9 @@ const mainService = {
         }
     }
     return response_object
+    },
+    async createProduct(){
+        
     }
   
  
