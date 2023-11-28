@@ -343,7 +343,6 @@
       window.localStorage.setItem('Ecommitment-product_id', product_data.product_id);
       window.localStorage.setItem('Ecommitment-variant_id', product_data.variant_id);
 
-    
     });
   }
 
@@ -362,9 +361,11 @@
 
       showEnvironmentDiv(calculation_response.quantity)
 
+      console.log("product_id: "+ product_id)
+      console.log("variant_id: " + variant_id)
 
       for (let p = 0; p < LS.cart.items.length; p++) {
-        if (LS.cart.items[p].variant_id === variant_id) {
+        if (LS.cart.items[p].variant_id == variant_id) {
           console.log("variant " + variant_id + " existe")
           switchCheckbox.checked = true;
         }
