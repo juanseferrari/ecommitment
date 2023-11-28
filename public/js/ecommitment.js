@@ -1,15 +1,13 @@
 (function () {
 
-  // Assuming the URL is something like: https://example.com/page?parameter=value
-    const store_id = LS.store.id
-
   //GLOBALS
-  let product_id = ""
-  let variant_id = ""
+  const store_id = LS.store.id
+  const product_id = window.sessionStorage.getItem('Ecommitment-product_id');
+  const variant_id = window.sessionStorage.getItem('Ecommitment-variant_id');
 
-  console.log("store_id: "+ store_id)
-  console.log("product_id: "+ product_id)
-  console.log("variant_id: "+ variant_id)
+  console.log("store_id: " + store_id)
+  console.log("product_id: " + product_id)
+  console.log("variant_id: " + variant_id)
 
   //FLUJOS DENTRO DEL JAVASCRIPT
 
@@ -353,8 +351,8 @@
 
 
       for (let p = 0; p < LS.cart.items.length; p++) {
-        if (LS.cart.items[p].variant_id == 771992910) {
-          console.log("variant 771992910 existe")
+        if (LS.cart.items[p].variant_id === variant_id) {
+          console.log("variant " + variant_id + " existe")
           switchCheckbox.checked = true;
         }
       }
@@ -390,15 +388,16 @@
 
 
   } else {
-
     console.log("start path")
 
+    //get info of product
     getProductData(store_id).then((product_data) => {
       console.log("product_data")
       console.log(product_data)
       console.log("product_data")
-      product_id = product_data.product_id
-      variant_id = product_data.variant_id
+      window.sessionStorage.setItem('Ecommitment-product_id', product_data.product_id);
+      window.sessionStorage.setItem('Ecommitment-variant_id', product_data.variant_id);
+
     
     });
 
