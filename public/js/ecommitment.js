@@ -147,16 +147,16 @@
 
 
 
-  function addProductToCart() {
+  function addProductToCart(product_id,variant_id,quantity) {
     console.log("addProductToCart")
     if (LS.cart.items) {
       console.log("LSproduct")
       //datos hardocodeados, esto deberia ser dinamico por cada usuario despues. 
       //aplicar la lógica del store_id
       const data = new URLSearchParams();
-      data.append('add_to_cart', 191980378); //product_id
-      data.append('variant_id', 771992910); //variant_id
-      data.append('quantity', 4); //quantity
+      data.append('add_to_cart', product_id); //product_id
+      data.append('variant_id', variant_id); //variant_id
+      data.append('quantity', quantity); //quantity
 
       fetch('/comprar/', {
         method: 'POST',
@@ -365,8 +365,6 @@
         if (LS.cart.items[p].variant_id == window.localStorage.getItem('Ecommitment-variant_id')) {
           console.log("variant " + window.localStorage.getItem('Ecommitment-variant_id') + " existe")
           switchCheckbox.checked = true;
-        } else {
-          console.log("variant " + window.localStorage.getItem('Ecommitment-variant_id') + " NO existe")
         }
       }
 
@@ -375,7 +373,7 @@
         if (switchCheckbox.checked) {
           console.log('Switch is ON');
           //Add product to cart for the amount given. 
-          addProductToCart()
+          addProductToCart(product_id,variant_id,calculation_response.quantity)
 
           // Call the function to initiate the delay and page reload
           reloadPageAfterDelay();
