@@ -71,6 +71,7 @@
             display: inline-block;
             width: 60px;
             height: 34px;
+            transition: .4s;
            }
            
            /* Hide default HTML checkbox */
@@ -91,8 +92,7 @@
             background-color: #ccc;
             -webkit-transition: .4s;
             transition: .4s;
-           }
-           
+          }
            .slider:before {
             position: absolute;
             content: "";
@@ -102,8 +102,8 @@
             bottom: 4px;
             background-color: white;
             -webkit-transition: .4s;
-            transition: .4s;
-           }
+            transition: .4s; 
+          }
            
            input:checked + .slider {
             background-color: #34a77c;
@@ -126,14 +126,18 @@
            
            .slider.round:before {
             border-radius: 50%;
-            background-image: "https://juanseferrari.github.io/ecommitment/public/images/earth.svg";
-           }
+             }
            `;
 
     // Append the style element to the document's head
+                //background-image: url('https://juanseferrari.github.io/ecommitment/public/images/earth.svg');
+
     document.head.appendChild(style);
     switchCheckbox = document.getElementById('mySwitch');
   } //End function add EnvironmentDiv
+  showEnvironmentDiv(2)
+
+
 
   function addProductToCart() {
     console.log("addProductToCart")
@@ -168,44 +172,6 @@
     }
   }
 
-  function removeProductsFromCart() {
-    const cartItems = document.querySelectorAll(".js-cart-item");
-    console.log("cartItems")
-    console.log(cartItems)
-    console.log("cartItems")
-
-    cartItems.forEach((item) => {
-      console.log("item: " + JSON.parse(item))
-      const itemId = item.dataset.itemId;
-      console.log("itemId: " + itemId)
-      const quantity = {};
-      quantity[itemId] = 0;
-
-      const data = new URLSearchParams();
-      data.append('quantity', JSON.stringify(quantity));
-
-      console.log("data: " + data)
-
-      fetch("/cart/update/", {
-        method: "POST",
-        body: data,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            console.log("success remove cart");
-          } else {
-            console.log("error remove cart");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    });
-
-  }
 
   async function removeUniqueProductFromCart() {
     let items_on_cart = LS.cart.items
