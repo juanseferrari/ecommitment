@@ -258,22 +258,25 @@
 
       fetch('https://ecommitment-634117e74352.herokuapp.com/api/calculator', {
         method: 'POST',
-        body,
+        body: body,
         headers: {
           'Content-Type': 'application/json'
         }
       })
         .then(response => {
-          console.log(response)
-          if (response.ok) {
-            console.log('success');
-          } else {
+          console.log("calculator_response: " + response)
+          if (response.error) {
             console.log('error');
+          } else {
+            console.log('success')
           }
+          return response
         })
         .catch(error => {
           console.error('Error:', error);
         });
+
+        
 
   }
 
