@@ -1,5 +1,9 @@
 (function () {
 
+  //GLOBALS
+  //let calculator_data = null; // Declare a global variable to store the result
+
+
   //FLUJOS DENTRO DEL JAVASCRIPT
 
   //VALIDAR QUE EL BONO AMBIENTAL EXISTA EN PRODUCTOS. SI NO EXISTE, CREAR EL PRODUCTO. SINO DEVOLVER ESE DATO
@@ -237,59 +241,10 @@
   }
 
 
-  async function calculator(cart_data,store_data) {
-      console.log("calculator")
-
-      //let cart_data = LS.cart
-      //let store_data = LS.store
-
-      console.log(cart_data)
-      console.log(store_data)
-
-      let body = JSON.stringify({
-        "cart": cart_data,
-        "store": store_data
-      })
-
-      console.log("calculator body")
-      console.log(body)
-      console.log("calculator body")
-
-      await fetch('https://ecommitment-634117e74352.herokuapp.com/api/calculator', {
-        method: 'POST',
-        body: body,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(response => {   
-        if (response.error) {
-          console.log('Error:', response.error);
-        } else {
-          // Parse the response body as JSON
-          return response.json();
-        }
-      })
-      .then(data => {
-        // Handle the parsed JSON data
-        console.log('Parsed JSON data:', data);
-        
-    
-        // If you need to return the data from this function, you can do so here
-        return data;
-      })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-
-        
-
-  }
-
 
   //NEW CHATGPT FUNCTION
 
-  async function calculate(cart_data, store_data) {
+  async function calculator(cart_data, store_data) {
     console.log("calculator");
   
     try {
@@ -328,45 +283,55 @@
   }
   
   async function performCalculation() {
-    let calculator_response = await calculate(LS.cart, LS.store);
-  
-    console.log("calculator_response");
-    console.log(calculator_response);
-    console.log(JSON.stringify(calculator_response));
-    console.log("calculator_response");
-  
-    if (calculator_response) {
-      let calculator_quantity = calculator_response.quantity;
-      console.log("calculator_quantity: " + calculator_quantity);
+
+    try {
+      let calculator_response = await calculator(LS.cart, LS.store);
+
+      return calculator_response;
+    } catch (error) {
+      console.error('Error during calculation:', error);
+      return null;
     }
-    return calculator_response
   }
+
+
+
+
+
+// Execute the function to run the calculation and log the result
+;
+
   
   //Check pathname
   console.log(window.location.pathname)
   // Check the current URL path
   if (window.location.pathname.startsWith('/checkout/v3/next/')) {
-
-    //Obtener la data de la calculadora
-
-    let calculator_data =  performCalculation();
-    console.log("calculator_data")
-    console.log(calculator_data)
-    console.log("calculator_data")
+    console.log("next path")
 
     //Chequear si tiene el producto cargado como bono ambiental.
 
 
 
-    console.log("next path")
+    //Obtener la data de la calculadora
+    performCalculation().then((calculation_response) => {
+      console.log("calculation_response")
+      console.log(calculation_response)
+      console.log("calculation_response")
 
-    //Fetch amount to show
+      showEnvironmentDiv(calculation_response.quantity)
+
+
+      
+    
+    })
+
+
+
     //Fetch function that sends the whole information of the order and returns the amount to display.
     let environmentAmount = 10
 
     //function that edits the product variant price for the one of that session.
 
-    showEnvironmentDiv(calculator_data.quantity)
 
     for (let p = 0; p < LS.cart.items.length; p++) {
       if (LS.cart.items[p].variant_id == 771992910) {
