@@ -1,14 +1,7 @@
 (function () {
 
   // Assuming the URL is something like: https://example.com/page?parameter=value
-    const urlParams = new URLSearchParams(window.location.search);
-    const store_id = urlParams.get('store_id');
-
-    if (store_id) {
-      console.log('Parameter value:', store_id);
-    } else {
-      console.log('Parameter not found in the URL');
-    }
+    const store_id = LS.store.id
 
   //GLOBALS
   let product_id = ""
