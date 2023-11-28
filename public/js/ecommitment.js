@@ -2,8 +2,8 @@
 
   //GLOBALS
   const store_id = LS.store.id
-  const product_id = window.sessionStorage.getItem('Ecommitment-product_id');
-  const variant_id = window.sessionStorage.getItem('Ecommitment-variant_id');
+  const product_id = window.localStorage.getItem('Ecommitment-product_id');
+  const variant_id = window.localStorage.getItem('Ecommitment-variant_id');
 
   console.log("store_id: " + store_id)
   console.log("product_id: " + product_id)
@@ -333,12 +333,25 @@
 
   //Check pathname
   console.log(window.location.pathname)
+
+  if(!product_id && !variant_id){
+    //get info of product
+    getProductData(store_id).then((product_data) => {
+      console.log("product_data")
+      console.log(product_data)
+      console.log("product_data")
+      window.localStorage.setItem('Ecommitment-product_id', product_data.product_id);
+      window.localStorage.setItem('Ecommitment-variant_id', product_data.variant_id);
+
+    
+    });
+  }
+
   // Check the current URL path
   if (window.location.pathname.startsWith('/checkout/v3/next/')) {
     console.log("next path")
 
     //Chequear si tiene el producto cargado como bono ambiental.
-
 
 
     //Obtener la data de la calculadora
@@ -390,16 +403,7 @@
   } else {
     console.log("start path")
 
-    //get info of product
-    getProductData(store_id).then((product_data) => {
-      console.log("product_data")
-      console.log(product_data)
-      console.log("product_data")
-      window.sessionStorage.setItem('Ecommitment-product_id', product_data.product_id);
-      window.sessionStorage.setItem('Ecommitment-variant_id', product_data.variant_id);
 
-    
-    });
 
 
   }
