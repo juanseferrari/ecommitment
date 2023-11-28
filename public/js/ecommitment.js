@@ -361,13 +361,12 @@
 
       showEnvironmentDiv(calculation_response.quantity)
 
-      console.log("product_id: "+ product_id)
-      console.log("variant_id: " + variant_id)
-
       for (let p = 0; p < LS.cart.items.length; p++) {
-        if (LS.cart.items[p].variant_id == variant_id) {
-          console.log("variant " + variant_id + " existe")
+        if (LS.cart.items[p].variant_id == window.localStorage.getItem('Ecommitment-variant_id')) {
+          console.log("variant " + window.localStorage.getItem('Ecommitment-variant_id') + " existe")
           switchCheckbox.checked = true;
+        } else {
+          console.log("variant " + window.localStorage.getItem('Ecommitment-variant_id') + " NO existe")
         }
       }
 
