@@ -239,7 +239,6 @@
 
   function calculator(cart_data,store_data) {
       console.log("calculator")
-      console.log("cart")
 
       //let cart_data = LS.cart
       //let store_data = LS.store
@@ -263,15 +262,24 @@
           'Content-Type': 'application/json'
         }
       })
-        .then(response => {
-          console.log("calculator_response: " + response)
-          if (response.error) {
-            console.log('error');
-          } else {
-            console.log('success')
-          }
-          return response
-        })
+      .then(response => {   
+        if (response.error) {
+          console.log('Error:', response.error);
+        } else {
+          // Parse the response body as JSON
+          return response.json();
+        }
+      })
+      .then(data => {
+        // Handle the parsed JSON data
+        console.log('Parsed JSON data:', data);
+    
+        // Perform further actions with the data
+        // ...
+    
+        // If you need to return the data from this function, you can do so here
+        return data;
+      })
         .catch(error => {
           console.error('Error:', error);
         });
@@ -288,8 +296,11 @@
     //Obtener la data de la calculadora
 
     let calculator_response = calculator(LS.cart,LS.store)
+    console.log("calculator_response")
+    console.log(calculator_response)
+    console.log(JSON.stringify(calculator_response))
+    console.log("calculator_response")
     let calculator_quantity = calculator_response.quantity
-    console.log("calculator_response: "+ calculator_response)
     console.log("calculator_quantity: " + calculator_quantity)
 
     //Chequear si tiene el producto cargado como bono ambiental.
