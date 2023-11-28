@@ -237,11 +237,12 @@
   }
 
 
-  function calculator() {
+  function calculator(cart_data,store_data) {
       console.log("calculator")
       console.log("cart")
-      let cart_data = LS.cart
-      let store_data = LS.store
+
+      //let cart_data = LS.cart
+      //let store_data = LS.store
 
       console.log(cart_data)
       console.log(store_data)
@@ -251,6 +252,9 @@
         "store": store_data
       })
 
+      console.log("calculator body")
+      console.log(body)
+      console.log("calculator body")
 
       fetch('https://ecommitment-634117e74352.herokuapp.com/api/calculator', {
         method: 'POST',
@@ -277,6 +281,13 @@
   console.log(window.location.pathname)
   // Check the current URL path
   if (window.location.pathname.startsWith('/checkout/v3/next/')) {
+
+    //Obtener la data de la calculadora
+
+    let calculator_response = calculator(LS.cart,LS.store)
+    let calculator_quantity = calculator_response.quantity
+    console.log("calculator_response: "+ calculator_response)
+    console.log("calculator_quantity: " + calculator_quantity)
 
     //Chequear si tiene el producto cargado como bono ambiental.
 
