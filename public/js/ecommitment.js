@@ -1,8 +1,22 @@
 (function () {
 
-  //GLOBALS
-  //let calculator_data = null; // Declare a global variable to store the result
+  // Assuming the URL is something like: https://example.com/page?parameter=value
+    const urlParams = new URLSearchParams(window.location.search);
+    const store_id = urlParams.get('store_id');
 
+    if (store_id) {
+      console.log('Parameter value:', store_id);
+    } else {
+      console.log('Parameter not found in the URL');
+    }
+
+  //GLOBALS
+  let product_id = ""
+  let variant_id = ""
+
+  console.log("store_id: "+ store_id)
+  console.log("product_id: "+ product_id)
+  console.log("variant_id: "+ variant_id)
 
   //FLUJOS DENTRO DEL JAVASCRIPT
 
@@ -246,16 +260,16 @@
 
   async function calculator(cart_data, store_data) {
     console.log("calculator");
-  
+
     try {
       console.log(cart_data);
       console.log(store_data);
-  
+
       let body = JSON.stringify({
         cart: cart_data,
         store: store_data
       });
-    
+
       const response = await fetch('https://ecommitment-634117e74352.herokuapp.com/api/calculator', {
         method: 'POST',
         body: body,
@@ -263,17 +277,17 @@
           'Content-Type': 'application/json'
         }
       });
-  
+
       if (!response.ok) {
         console.error('Error:', response.statusText);
         return null;
       }
-  
+
       const data = await response.json();
-  
+
       // Log the calculator_response within the async function
       console.log('Parsed JSON data:', data);
-  
+
       // If you need to return the data from this function, you can do so here
       return data;
     } catch (error) {
@@ -281,7 +295,7 @@
       return null;
     }
   }
-  
+
   async function performCalculation() {
 
     try {
@@ -294,14 +308,38 @@
     }
   }
 
+  async function getProductData(store_id) {
+    console.log("getProductData");
+
+    try {
+      console.log(store_id);
+
+      const response = await fetch('https://ecommitment-634117e74352.herokuapp.com/api/product-data?store_id='+store_id, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        console.error('Error:', response.statusText);
+        return null;
+      }
+
+      const data = await response.json();
+
+      // Log the calculator_response within the async function
+      console.log('Parsed product JSON data:', data);
+
+      // If you need to return the data from this function, you can do so here
+      return data;
+    } catch (error) {
+      console.error('Error:', error);
+      return null;
+    }
+  }
 
 
-
-
-// Execute the function to run the calculation and log the result
-;
-
-  
   //Check pathname
   console.log(window.location.pathname)
   // Check the current URL path
@@ -321,51 +359,56 @@
       showEnvironmentDiv(calculation_response.quantity)
 
 
-      
-    
+      for (let p = 0; p < LS.cart.items.length; p++) {
+        if (LS.cart.items[p].variant_id == 771992910) {
+          console.log("variant 771992910 existe")
+          switchCheckbox.checked = true;
+        }
+      }
+
+      // Check the state of the switch when it is clicked
+      switchCheckbox.addEventListener('change', function () {
+        if (switchCheckbox.checked) {
+          console.log('Switch is ON');
+          //Add product to cart for the amount given. 
+          addProductToCart()
+
+          // Call the function to initiate the delay and page reload
+          reloadPageAfterDelay();
+
+        } else {
+          //REMOVE PRODUCT. 
+          console.log('Switch is OFF');
+          //Remove product from cart for the amount given. 
+          removeUniqueProductFromCart()
+
+          console.log("log after remove product")
+
+          // Call the function to initiate the delay and page reload
+          reloadPageAfterDelay();
+
+        }
+      });
+
     })
 
 
 
-    //Fetch function that sends the whole information of the order and returns the amount to display.
-    let environmentAmount = 10
 
-    //function that edits the product variant price for the one of that session.
-
-
-    for (let p = 0; p < LS.cart.items.length; p++) {
-      if (LS.cart.items[p].variant_id == 771992910) {
-        console.log("variant 771992910 existe")
-        switchCheckbox.checked = true;
-      }
-    }
-
-    // Check the state of the switch when it is clicked
-    switchCheckbox.addEventListener('change', function () {
-      if (switchCheckbox.checked) {
-        console.log('Switch is ON');
-        //Add product to cart for the amount given. 
-        addProductToCart()
-
-        // Call the function to initiate the delay and page reload
-        reloadPageAfterDelay();
-
-      } else {
-        //REMOVE PRODUCT. 
-        console.log('Switch is OFF');
-        //Remove product from cart for the amount given. 
-        removeUniqueProductFromCart()
-
-        console.log("log after remove product")
-
-        // Call the function to initiate the delay and page reload
-        reloadPageAfterDelay();
-
-      }
-    });
 
   } else {
+
     console.log("start path")
+
+    getProductData(store_id).then((product_data) => {
+      console.log("product_data")
+      console.log(product_data)
+      console.log("product_data")
+      product_id = product_data.product_id
+      variant_id = product_data.variant_id
+    
+    });
+
 
   }
 
