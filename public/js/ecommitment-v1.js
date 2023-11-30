@@ -1,8 +1,8 @@
-(function () {
+(async function () {
 
-  window.onload = function() {
-    console.log('Window is fully loaded');
-    setTimeout(function () {
+  document.addEventListener('DOMContentLoaded', function() {
+    // Your code here
+    console.log('DOMCONTENTLOADED');
   
 
 
@@ -601,7 +601,6 @@
   console.log("CART CONTACT")
 
 
-}, 200); //END SET TIMEOUT
-} //END WINDOW ON LOAD
+}); //END DOMCONTENTLOADED
 
 })();
