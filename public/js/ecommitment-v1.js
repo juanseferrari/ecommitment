@@ -33,6 +33,8 @@
 
   // Your JavaScript
   let switchCheckbox = document.getElementById('ecomm-mainSwitch');
+  let infoButton = document.getElementById('ecomm-infoButton');
+  let infoClose = document.getElementById('ecomm-infoClose');
 
   //OBTENER INFO DEL SHIPPING Y CALCULAR DISTANCIA Y DEVOLVER EL environmentAmount
 
@@ -78,7 +80,7 @@
       </div>
       <div style="display: flex;">
         <div class="info-container">
-          <div class="info-icon" onclick="openModal()">
+          <div class="info-icon" id="ecomm-infoButton">
             <svg class="info-icon-svg" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
               viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
               <path
@@ -89,7 +91,7 @@
 
         <div class="modal" id="ecomm-infoModal">
           <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <span class="close-btn" id="ecomm-infoClose">&times;</span>
             <p>This is the information you want to display in the modal.</p>
           </div>
         </div>
@@ -316,6 +318,9 @@
 
     document.head.appendChild(style);
     switchCheckbox = document.getElementById('ecomm-mainSwitch');
+    infoButton = document.getElementById('ecomm-infoButton');
+    infoClose = document.getElementById('ecomm-infoClose');
+
   } //End function add EnvironmentDivv2
 
   function addProductToCart(product_id,variant_id,quantity) {
@@ -569,6 +574,13 @@
 
         }
       });
+      infoButton.addEventListener('click', function () {
+        openModal()
+      })
+      infoClose.addEventListener('click', function () {
+        closeModal()
+      })
+
 
     })
 
