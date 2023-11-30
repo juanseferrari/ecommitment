@@ -414,7 +414,7 @@
     setTimeout(function () {
       // Reload the page after 1 second1
       window.location.reload();
-    }, 300); // 1000 milliseconds = 1 second
+    }, 200); // 1000 milliseconds = 1 second
     switchCheckbox.checked = true;
     console.log("checked")
   }
@@ -536,13 +536,18 @@
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
         console.log("NO TIENE ADDRESS")
-        showEnvironmentDiv(0, 0, 0, "No hay emisiones en este pedido. ")
+        setTimeout(function () {
+          // Reload the page after 1 second1
+          showEnvironmentDiv(0, 0, 0, "No hay emisiones en este pedido. ")
+        }, 200);
       } else {
         console.log("TIENE ADDRESS")
+        setTimeout(function () {
+          // Reload the page after 1 second1
+          showEnvironmentDiv(calculation_response.quantity,calculation_response.distance, calculation_response.co2_emitted, "TEXTO" )
+        }, 200);
 
-        showEnvironmentDiv(calculation_response.quantity,calculation_response.distance, calculation_response.co2_emitted, "TEXTO" )
       }
-      console.log("AFUERA DEL ADDRESS")
 
 
       for (let p = 0; p < LS.cart.items.length; p++) {
