@@ -1,4 +1,4 @@
-(async function () {
+(function () {
 
   document.addEventListener('DOMContentLoaded', function() {
     // Your code here
