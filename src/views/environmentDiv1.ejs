@@ -1,193 +1,189 @@
 <style>
-  /** CONTAINER CSS */
-  .ecomm-container {
-    margin: 20px 0;
-    border: black 1px solid;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.5);
-    display: block;
-    border-radius: 16px;
-    box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.1);
-    /* Adjust values for your shadow */
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
-  }
-
-  .ecomm-description-container {
-    width: 100%;
-  }
-
-  .ecomm-description-container p {
-    font-size: 20px;
-  }
-
-  .ecomm-description-container span {
-    font-weight: bold;
-  }
-
-  .ecomm-midtext-container {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .ecomm-switch-logo {
-    height: 34px;
-  }
-
-  .ecomm-logo {
-    height: 34px;
-  }
-
-  .switch-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    height: 34px;
-  }
-
-
-  .ecomm-switch-logo {
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-  }
-
-  .switch-amount {
-    display: flex;
-    align-items: center;
-  }
-
-  /* The switch - the box around the slider */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-    transition: background-color 0.4s;
-  }
-
-  /* Hide default HTML checkbox */
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  /* The slider */
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .4s;
-    transition: .4s;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    /* Bootstrap-like box shadow */
-
-  }
-
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-
-  input:checked+.slider {
-    background-color: #34a77c;
-  }
-
-  input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-
-  input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
-
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 34px;
-  }
-
-  .slider.round:before {
-    border-radius: 50%;
-    background-position: center;
-    background-size: cover;
-    background-image: url(https://juanseferrari.github.io/ecommitment/public/images/earth.svg);
-    background-repeat: no-repeat;
-    background-color: rgba(255, 0, 0, 0);
-    filter: invert(100%)
-      /* Para hacer el mundo negro, lo podemos hacer con esto. */
-  }
-
-
-
-
-
-  .info-container {
-    position: relative;
-  }
-
-  .info-icon {
-    font-size: 24px;
-    color: blue;
-    cursor: pointer;
-  }
-
-  .info-icon-svg {
-    height: 34px;
-    width: 24px;
-    fill: #2196F3;
-  }
-
-  .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-
-  .modal-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.3s ease, transform 0.3s ease;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  }
-
-  .modal.active {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    transition: all 1s ease;
-
-  }
-
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 20px;
-    cursor: pointer;
-  }
+ .ecomm-container {
+      margin: 20px 0;
+      border: 1px solid rgba(67,67,67,0.3);
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 1);
+      display: block;
+      border-radius: 16px;
+      box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.1);
+      /* Adjust values for your shadow */
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    }
+  
+    .ecomm-description-container {
+      width: 100%;
+    }
+  
+    .ecomm-description-container p {
+      font-size: 20px;
+    }
+  
+    .ecomm-description-container span {
+      font-weight: bold;
+    }
+  
+    .ecomm-midtext-container {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .ecomm-switch-logo {
+      height: 34px;
+    }
+  
+    .ecomm-logo {
+      height: 34px;
+    }
+  
+    .switch-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 34px;
+    }
+  
+  
+    .ecomm-switch-logo {
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+    }
+  
+    .switch-amount {
+      display: flex;
+      align-items: center;
+    }
+  
+    /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      transition: background-color 0.4s;
+    }
+  
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+  
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+      /* Bootstrap-like box shadow */
+  
+    }
+  
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+  
+    input:checked+.slider {
+      background-color: #34a77c;
+    }
+  
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+  
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+  
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+  
+    .slider.round:before {
+      border-radius: 50%;
+      background-position: center;
+      background-size: cover;
+      background-image: url(https://juanseferrari.github.io/ecommitment/public/images/earth.svg);
+      background-repeat: no-repeat;
+      background-color: rgba(255, 0, 0, 0);
+      filter: invert(100%)
+        /* Para hacer el mundo negro, lo podemos hacer con esto. */
+    }
+    
+    .info-container {
+      position: relative;
+    }
+  
+    .info-icon {
+      font-size: 24px;
+      color: blue;
+      cursor: pointer;
+    }
+  
+    .info-icon-svg {
+      height: 34px;
+      width: 24px;
+      fill: #2196F3;
+    }
+  
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  
+    .modal-content {
+      border-radius: 16px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease, transform 0.3s ease;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+  
+    .modal.active {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      transition: all 1s ease;
+  
+    }
+  
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
 </style>
 
-<body style="background-color: white;">
+<body style="background-color: black;">
 
   <div class="ecomm-container">
     <div class="switch-container">

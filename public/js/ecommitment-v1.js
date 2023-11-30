@@ -60,7 +60,7 @@
   function showEnvironmentDiv(environmentAmount, distance, co2, text) {
     // Get the div element with class "table-subtotal"
     var reviewDiv = document.querySelector('.review-block-detailed');
-
+    var reviewDiv2 = document.getElementById('preReviewBlockSlot')
     var newDiv = document.createElement('div');
 
     // Set the HTML content of the subtotalDiv using innerHTML
@@ -116,7 +116,7 @@
   </div>
         `;
 
-    reviewDiv.insertAdjacentElement('afterend', newDiv);
+        reviewDiv2.insertAdjacentElement('afterend', newDiv);
 
 
 
@@ -287,6 +287,7 @@
     }
   
     .modal-content {
+      border-radius: 16px;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -322,7 +323,6 @@
     infoClose = document.getElementById('ecomm-infoClose');
 
   } //End function add EnvironmentDivv2
-  showEnvironmentDiv(0, 0, 0, "No hay emisiones en este pedido. ")
 
   function addProductToCart(product_id,variant_id,quantity) {
     console.log("addProductToCart")
