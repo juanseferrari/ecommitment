@@ -323,6 +323,7 @@
     infoClose = document.getElementById('ecomm-infoClose');
 
   } //End function add EnvironmentDivv2
+  showEnvironmentDiv(0, 0, 0, "No hay emisiones en este pedido. ")
 
   function addProductToCart(product_id,variant_id,quantity) {
     console.log("addProductToCart")
@@ -538,11 +539,14 @@
 
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
-
+        console.log("NO TIENE ADDRESS")
         showEnvironmentDiv(0, 0, 0, "No hay emisiones en este pedido. ")
       } else {
+        console.log("TIENE ADDRESS")
+
         showEnvironmentDiv(calculation_response.quantity,calculation_response.distance, calculation_response.co2_emitted, "TEXTO" )
       }
+      console.log("AFUERA DEL ADDRESS")
 
 
       for (let p = 0; p < LS.cart.items.length; p++) {
