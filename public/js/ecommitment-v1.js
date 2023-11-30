@@ -118,6 +118,7 @@
     style.textContent = `
     /** CONTAINER CSS */
     .ecomm-container {
+      margin: 20px 0;
       border: black 1px solid;
       padding: 10px;
       background-color: rgba(255, 255, 255, 0.5);
@@ -245,11 +246,7 @@
       filter: invert(100%)
         /* Para hacer el mundo negro, lo podemos hacer con esto. */
     }
-  
-  
-  
-  
-  
+    
     .info-container {
       position: relative;
     }
@@ -309,8 +306,6 @@
     document.head.appendChild(style);
     switchCheckbox = document.getElementById('ecomm-mainSwitch');
   } //End function add EnvironmentDivv2
-
-  showEnvironmentDiv(12)
 
   function addProductToCart(product_id,variant_id,quantity) {
     console.log("addProductToCart")
