@@ -132,7 +132,7 @@
     /** CONTAINER CSS */
     .ecomm-container {
       margin: 20px 0;
-      border: black 1px solid;
+      border: 1px solid rgba(67,67,67,0.3);
       padding: 10px;
       background-color: rgba(255, 255, 255, 0.5);
       display: block;
@@ -322,6 +322,7 @@
     infoClose = document.getElementById('ecomm-infoClose');
 
   } //End function add EnvironmentDivv2
+  showEnvironmentDiv(0, 0, 0, "No hay emisiones en este pedido. ")
 
   function addProductToCart(product_id,variant_id,quantity) {
     console.log("addProductToCart")
@@ -416,7 +417,7 @@
     setTimeout(function () {
       // Reload the page after 1 second1
       window.location.reload();
-    }, 200); // 1000 milliseconds = 1 second
+    }, 300); // 1000 milliseconds = 1 second
     switchCheckbox.checked = true;
     console.log("checked")
   }
