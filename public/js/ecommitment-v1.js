@@ -44,7 +44,7 @@
   }
 
 
-  function showEnvironmentDiv(environmentAmount) {
+  function showEnvironmentDiv(environmentAmount, distance, co2, text) {
     // Get the div element with class "table-subtotal"
     var reviewDiv = document.querySelector('.review-block-detailed');
 
@@ -87,13 +87,13 @@
     </div>
     <div class="ecomm-description-container">
       <p>
-        <span>Compra con impacto:</span> Convierte tu compra en un compromiso ecológico adicional.
+        <span>Compra con impacto:</span> Convierte tu compra en un compromiso ecológico adicional. ${text}
       </p>
     </div>
     <div class="ecomm-midtext-container">
       <div class="ecomm-midtext-left">
-        <p>🚚 Distancia envío: 300km</p>
-        <p>💨 CO2 emitidos: 14 ppm</p>
+        <p>🚚 Distancia envío: ${distance} km</p>
+        <p>💨 CO2 emitidos: ${co2} ppm</p>
       </div>
       <div>
         <h1>${environmentAmount} 🌎</h1>
@@ -521,10 +521,11 @@
 
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
-        return true
+        showEnvironmentDiv(0, 0, 0, "No hay emisiones en este pedido. ")
+      } else {
+        showEnvironmentDiv(calculation_response.quantity,calculation_response.distance, calculation_response.co2_emitted, "TEXTO" )
       }
 
-      showEnvironmentDiv(calculation_response.quantity)
 
       for (let p = 0; p < LS.cart.items.length; p++) {
         if (LS.cart.items[p].variant_id == window.localStorage.getItem('Ecommitment-variant_id')) {
