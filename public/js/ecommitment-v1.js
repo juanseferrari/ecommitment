@@ -1,6 +1,6 @@
 (function () {
 
-  document.addEventListener('DOMContentLoaded', function() {
+  window.onload = function() {
     // Your code here
     console.log('DOMCONTENTLOADED');
   
@@ -613,6 +613,6 @@
   console.log("CART CONTACT")
 
 
-}); //END DOMCONTENTLOADED
+}; //END window load
 
 })();
