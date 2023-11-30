@@ -68,6 +68,9 @@ const mainController = {
     }
 
     res.json(return_object)
+  },
+  demo1: (req,res) => {
+    res.render("environmentDiv1")
   }
 };
 

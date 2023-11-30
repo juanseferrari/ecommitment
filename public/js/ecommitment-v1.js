@@ -17,136 +17,34 @@
 
   //MOSTRAR EL BONO AMBIENTAL EN ESE CHECKOUT (EL BONO AMBIENTAL PUEDE SER UNA IMAGEN O MEJORA DEL CHECKOUT)
 
-  
 
 
 
   // Your JavaScript
-  let switchCheckbox = document.getElementById('mySwitch');
+  let switchCheckbox = document.getElementById('ecomm-mainSwitch');
 
   //OBTENER INFO DEL SHIPPING Y CALCULAR DISTANCIA Y DEVOLVER EL environmentAmount
 
 
+  function openModal() {
+    var modal = document.getElementById("ecomm-infoModal");
+    modal.style.display = "block";
+
+    // Add event listener to close modal when clicking outside
+    window.addEventListener("click", function (event) {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+  }
+
+  function closeModal() {
+    var modal = document.getElementById("ecomm-infoModal");
+    modal.style.display = "none";
+  }
+
 
   function showEnvironmentDiv(environmentAmount) {
-    // Get the div element with class "table-subtotal"
-    var subtotalDiv = document.querySelector('.table-subtotal');
-    var newDiv = document.createElement('div');
-
-    // Set the HTML content of the subtotalDiv using innerHTML
-    newDiv.innerHTML = `
-           <div class="switch-container">
-           <!-- Rounded switch -->
-           <div>
-            <label class="switch">
-                <input type="checkbox" id="mySwitch">
-                <span class="slider round"></span>
-            </label>
-           </div>
-           <!-- Description -->
-           <div class="switch-description">Bono ambiental</div>
-           <div class="switch-amount">$${environmentAmount}</div>
-           
-           </div>
-        `;
-
-    subtotalDiv.appendChild(newDiv);
-
-
-
-    // Set the height of the parent div to 20px
-    //subtotalDiv.style.height = '20px';
-
-    // Create a style element
-    var style = document.createElement('style');
-
-    // Set the CSS rules as text content
-    style.textContent = `
-            .switch-container {
-                display: flex;
-                justify-content: space-between;
-            }
-            .switch-description {
-                display: flex;
-                align-items: center;
-                padding-left: 10px;
-            }
-            .switch-amount {
-                display: flex;
-                align-items: center;
-            }
-           /* The switch - the box around the slider */
-           .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-            transition: background-color 0.4s;
-           }
-           
-           /* Hide default HTML checkbox */
-           .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-           }
-           
-           /* The slider */
-           .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-          }
-           .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s; 
-          }
-           
-           input:checked + .slider {
-            background-color: #34a77c;
-           }
-           
-           input:focus + .slider {
-            box-shadow: 0 0 1px #2196F3;
-           }
-           
-           input:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-           }
-           
-           /* Rounded sliders */
-           .slider.round {
-            border-radius: 34px;
-           }
-           
-           .slider.round:before {
-            border-radius: 50%;
-             }
-           `;
-
-    // Append the style element to the document's head
-    //background-image: url('https://juanseferrari.github.io/ecommitment/public/images/earth.svg');
-
-    document.head.appendChild(style);
-    switchCheckbox = document.getElementById('mySwitch');
-  } //End function add EnvironmentDiv
-
-  function showEnvironmentDivv2(environmentAmount) {
     // Get the div element with class "table-subtotal"
     var reviewDiv = document.querySelector('.review-block-detailed');
 
@@ -154,19 +52,55 @@
 
     // Set the HTML content of the subtotalDiv using innerHTML
     newDiv.innerHTML = `
-           <div class="switch-container">
-           <!-- Rounded switch -->
-           <div>
-            <label class="switch">
-                <input type="checkbox" id="mySwitch">
-                <span class="slider round"></span>
-            </label>
-           </div>
-           <!-- Description -->
-           <div class="switch-description">Bono ambiental</div>
-           <div class="switch-amount">$${environmentAmount}</div>
-           
-           </div>
+    <div class="ecomm-container">
+    <div class="switch-container">
+      <!-- Rounded switch -->
+      <div style="display: flex;">
+        <label class="switch">
+          <input type="checkbox" id="ecomm-mainSwitch">
+          <span class="slider round">
+          </span>
+        </label>
+        <div class="ecomm-switch-logo">
+          <img class="ecomm-logo" src="/images/logo_transparente.png" alt="">
+        </div>
+      </div>
+      <div style="display: flex;">
+        <div class="info-container">
+          <div class="info-icon" onclick="openModal()">
+            <svg class="info-icon-svg" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
+              viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+              <path
+                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="modal" id="ecomm-infoModal">
+          <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <p>This is the information you want to display in the modal.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Description -->
+    </div>
+    <div class="ecomm-description-container">
+      <p>
+        <span>Compra con impacto:</span> Convierte tu compra en un compromiso ecológico adicional.
+      </p>
+    </div>
+    <div class="ecomm-midtext-container">
+      <div class="ecomm-midtext-left">
+        <p>🚚 Distancia envío: 300km</p>
+        <p>💨 CO2 emitidos: 14 ppm</p>
+      </div>
+      <div>
+        <h1>${environmentAmount} 🌎</h1>
+      </div>
+
+    </div>
+  </div>
         `;
 
     reviewDiv.insertAdjacentElement('afterend', newDiv);
@@ -182,91 +116,201 @@
 
     // Set the CSS rules as text content
     style.textContent = `
-            .switch-container {
-                display: flex;
-                justify-content: space-between;
-            }
-            .switch-description {
-                display: flex;
-                align-items: center;
-                padding-left: 10px;
-            }
-            .switch-amount {
-                display: flex;
-                align-items: center;
-            }
-           /* The switch - the box around the slider */
-           .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-            transition: background-color 0.4s;
-           }
-           
-           /* Hide default HTML checkbox */
-           .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-           }
-           
-           /* The slider */
-           .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-          }
-           .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s; 
-          }
-           
-           input:checked + .slider {
-            background-color: #34a77c;
-           }
-           
-           input:focus + .slider {
-            box-shadow: 0 0 1px #2196F3;
-           }
-           
-           input:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-           }
-           
-           /* Rounded sliders */
-           .slider.round {
-            border-radius: 34px;
-           }
-           
-           .slider.round:before {
-            border-radius: 50%;
-             }
+    /** CONTAINER CSS */
+    .ecomm-container {
+      border: black 1px solid;
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.5);
+      display: block;
+      border-radius: 16px;
+      box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.1);
+      /* Adjust values for your shadow */
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+    }
+  
+    .ecomm-description-container {
+      width: 100%;
+    }
+  
+    .ecomm-description-container p {
+      font-size: 20px;
+    }
+  
+    .ecomm-description-container span {
+      font-weight: bold;
+    }
+  
+    .ecomm-midtext-container {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .ecomm-switch-logo {
+      height: 34px;
+    }
+  
+    .ecomm-logo {
+      height: 34px;
+    }
+  
+    .switch-container {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 34px;
+    }
+  
+  
+    .ecomm-switch-logo {
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+    }
+  
+    .switch-amount {
+      display: flex;
+      align-items: center;
+    }
+  
+    /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      transition: background-color 0.4s;
+    }
+  
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+  
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+      /* Bootstrap-like box shadow */
+  
+    }
+  
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+  
+    input:checked+.slider {
+      background-color: #34a77c;
+    }
+  
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+  
+    input:checked+.slider:before {
+      -webkit-transform: translateX(26px);
+      -ms-transform: translateX(26px);
+      transform: translateX(26px);
+    }
+  
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+  
+    .slider.round:before {
+      border-radius: 50%;
+      background-position: center;
+      background-size: cover;
+      background-image: url(https://juanseferrari.github.io/ecommitment/public/images/earth.svg);
+      background-repeat: no-repeat;
+      background-color: rgba(255, 0, 0, 0);
+      filter: invert(100%)
+        /* Para hacer el mundo negro, lo podemos hacer con esto. */
+    }
+  
+  
+  
+  
+  
+    .info-container {
+      position: relative;
+    }
+  
+    .info-icon {
+      font-size: 24px;
+      color: blue;
+      cursor: pointer;
+    }
+  
+    .info-icon-svg {
+      height: 34px;
+      width: 24px;
+      fill: #2196F3;
+    }
+  
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  
+    .modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s ease, transform 0.3s ease;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+  
+    .modal.active {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      transition: all 1s ease;
+  
+    }
+  
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
            `;
 
     // Append the style element to the document's head
     //background-image: url('https://juanseferrari.github.io/ecommitment/public/images/earth.svg');
 
     document.head.appendChild(style);
-    switchCheckbox = document.getElementById('mySwitch');
+    switchCheckbox = document.getElementById('ecomm-mainSwitch');
   } //End function add EnvironmentDivv2
 
-  //showEnvironmentDivv2(12)
+  showEnvironmentDiv(12)
 
   function addProductToCart(product_id,variant_id,quantity) {
     console.log("addProductToCart")

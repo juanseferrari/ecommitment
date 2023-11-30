@@ -6,6 +6,7 @@ const mainController = require('../controllers/main-controller');
 
 /* Home */
 router.get('/', mainController.home);
+router.get('/demo1', mainController.demo1);
 
 
 /** APIS */
