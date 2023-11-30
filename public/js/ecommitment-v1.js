@@ -1,8 +1,5 @@
 (function () {
 
-  window.onload = function() {
-    // Your code here
-    console.log('DOMCONTENTLOADED');
   
 
 
@@ -616,7 +613,5 @@
   console.log(LS.cart.contact)
   console.log("CART CONTACT")
 
-
-}; //END window load
 
 })();
