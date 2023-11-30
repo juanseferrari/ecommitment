@@ -62,7 +62,7 @@
           </span>
         </label>
         <div class="ecomm-switch-logo">
-          <img class="ecomm-logo" src="/images/logo_transparente.png" alt="">
+          <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente.png" alt="">
         </div>
       </div>
       <div style="display: flex;">
