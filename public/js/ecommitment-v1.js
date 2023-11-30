@@ -1,7 +1,11 @@
 (function () {
+
   window.onload = function() {
     console.log('Window is fully loaded');
-    
+    setTimeout(function () {
+  
+
+
   
   
   
@@ -528,6 +532,7 @@
 
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
+
         showEnvironmentDiv(0, 0, 0, "No hay emisiones en este pedido. ")
       } else {
         showEnvironmentDiv(calculation_response.quantity,calculation_response.distance, calculation_response.co2_emitted, "TEXTO" )
@@ -595,6 +600,8 @@
   console.log(LS.cart.contact)
   console.log("CART CONTACT")
 
+
+}, 200); //END SET TIMEOUT
 } //END WINDOW ON LOAD
 
 })();
