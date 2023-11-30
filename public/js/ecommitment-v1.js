@@ -323,7 +323,6 @@
     infoClose = document.getElementById('ecomm-infoClose');
 
   } //End function add EnvironmentDivv2
-  showEnvironmentDiv(0, 0, 0, "No hay emisiones en este pedido. ")
 
   function addProductToCart(product_id,variant_id,quantity) {
     console.log("addProductToCart")
