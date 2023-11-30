@@ -1,4 +1,11 @@
 (function () {
+  window.onload = function() {
+    console.log('Window is fully loaded');
+    
+  
+  
+  
+  
 
   //GLOBALS
   const store_id = LS.store.id
@@ -587,4 +594,7 @@
   console.log("CART CONTACT")
   console.log(LS.cart.contact)
   console.log("CART CONTACT")
+
+} //END WINDOW ON LOAD
+
 })();
