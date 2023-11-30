@@ -116,7 +116,7 @@
   </div>
         `;
 
-        reviewDiv2.insertAdjacentElement('afterend', newDiv);
+        reviewDiv2.nextElementSibling.insertAdjacentElement('afterend', newDiv);
 
 
 
