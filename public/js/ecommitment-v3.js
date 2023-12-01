@@ -53,54 +53,49 @@
     // Set the HTML content of the subtotalDiv using innerHTML
     newDiv.innerHTML = `
     <div class="ecomm-container">
-    <div class="switch-container">
+    <div class="title-container">
       <!-- Rounded switch -->
-      <div style="display: flex;">
-        <label class="switch">
-          <input type="checkbox" id="ecomm-mainSwitch">
-          <span class="slider round">
-          </span>
-        </label>
-        <div class="ecomm-switch-logo">
+        <a >
           <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente.png" alt="">
-        </div>
-      </div>
-      <div style="display: flex;">
-        <div class="info-container">
-          <div class="info-icon" id="ecomm-infoButton">
-            <svg class="info-icon-svg" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
-              viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-              <path
-                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
-            </svg>
-          </div>
-        </div>
+        </a>
+      <div style="display: flex;" class="ecomm-amount">
+        <p>$ ${environmentAmount * 10}</p>
 
-        <div class="modal" id="ecomm-infoModal">
-          <div class="modal-content">
-            <span class="close-btn" id="ecomm-infoClose">&times;</span>
-            <p>This is the information you want to display in the modal.</p>
-          </div>
-        </div>
       </div>
       <!-- Description -->
     </div>
     <div class="ecomm-description-container">
-      <p>
-        <span>¡Transformá tu envío en carbono neutral!</span>  ${text}
-      </p>
-    </div>
-    <div class="ecomm-midtext-container">
-      <div class="ecomm-midtext-left">
-        <p>🚚 Distancia envío: ${distance} km</p>
-        <p>💨 CO2 emitidos: ${co2} ppm</p>
+      <div class="ecomm-main-text">
+        <p>
+          <span>${text}</span>
+        </p>
       </div>
-      <div>
-        <h1>${environmentAmount} 🌎</h1>
+      <div class="ecomm-toggle-button">
+          <label class="switch">
+            <input type="checkbox" id="mySwitch">
+            <span class="slider round">
+            </span>
+          </label>
       </div>
 
     </div>
-  </div>
+      <div class="info-container">
+        <div class="info-icon" onclick="openModal()">
+          <svg class="info-icon-svg" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
+            viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+            <path
+              d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="modal" id="ecomm-infoModal">
+        <div class="modal-content">
+          <span class="close-btn" onclick="closeModal()">&times;</span>
+          <p>🚚 Distancia envío: ${distance} km</p>
+          <p>💨 CO2 emitidos: ${co2} ppm</p>        </div>
+      </div>
+    </div>
         `;
 
 
@@ -109,23 +104,19 @@
 
     // Set the CSS rules as text content
     style.textContent = `
-    /** CONTAINER CSS */
     .ecomm-container {
       margin: 20px 0;
       border: 1px solid rgba(67,67,67,0.3);
       padding: 10px;
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgba(255, 255, 255, 1);
       display: block;
-      /** 
-
-      border-radius: 16px;
-      box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.1);
-      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
-      */
     }
   
     .ecomm-description-container {
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   
     .ecomm-description-container p {
@@ -135,33 +126,28 @@
     .ecomm-description-container span {
       font-weight: bold;
     }
-  
-    .ecomm-midtext-container {
-      display: flex;
-      justify-content: space-between;
-    }
-  
-    .ecomm-switch-logo {
-      height: 34px;
-    }
+
   
     .ecomm-logo {
       height: 34px;
     }
   
-    .switch-container {
+    .title-container {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       width: 100%;
       height: 34px;
     }
-  
-  
-    .ecomm-switch-logo {
-      display: flex;
-      align-items: center;
-      padding-left: 10px;
+    .title-container a {
+      cursor: pointer;
     }
+    .ecomm-amount p{
+      font-size: 24px;
+      margin: 0;
+    }
+  
+
   
     .switch-amount {
       display: flex;
@@ -296,34 +282,9 @@
     }
            `;
 
-    // Append the style element to the document's head
-    //background-image: url('https://juanseferrari.github.io/ecommitment/public/images/earth.svg');
-
-    // Get the div element with class "table-subtotal"
-    let divToAddContainer
-
-    var reviewDiv1 = document.querySelector('.review-block-detailed');
-    var reviewDiv2 = document.getElementById('preReviewBlockSlot')
-    var reviewDiv3 = document.querySelector('.loading-skeleton')
     var reviewDiv4 = document.querySelector('.panel.panel-with-header');
 
-
-    /** 
-    if(reviewDiv1){
-      //Si existe el review block, agregarlo ahi
-      console.log("reviewDiv1")
-      reviewDiv1.insertAdjacentElement('afterend', newDiv);
-    } else if (!reviewDiv1 && reviewDiv2){
-      console.log("!reviewDiv1 && reviewDiv2")
-      reviewDiv2.nextElementSibling.insertAdjacentElement('afterend', newDiv);
-    } else {
-
-    }
-   */
     reviewDiv4.insertAdjacentElement('beforebegin', newDiv);
-    //reviewDiv3.nextElementSibling.insertAdjacentElement('afterend', newDiv);
-
-
 
     document.head.appendChild(style);
     switchCheckbox = document.getElementById('ecomm-mainSwitch');
@@ -364,7 +325,6 @@
 
     }
   }
-
 
   async function removeUniqueProductFromCart(quantity) {
     let items_on_cart = LS.cart.items
@@ -418,7 +378,6 @@
 
   }
 
-
   // Wait for 1 second (1000 milliseconds) and then reload the page
   function reloadPageAfterDelay() {
     setTimeout(function () {
@@ -429,9 +388,6 @@
     console.log("checked")
   }
 
-
-
-  //NEW CHATGPT FUNCTION
 
   async function calculator(cart_data, store_data) {
     console.log("calculator");
@@ -544,17 +500,19 @@
       console.log("calculation_response")
 
       let message = ""
+      let qty = calculation_response.quantity
 
       //Validar el address
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
            console.log("NO TIENE ADDRESS")
-           message = "No hay emisiones en este pedido."
+           message = "¡Tu envío no tiene emisiones, pero transformá tu envío en carbono neutral!"
+           qty = 1
       } else {
            console.log("TIENE ADDRESS")
-           message = "Tiene emisiones, texto variable."
+           message = "¡Transformá tu envío en carbono neutral!"
       }
-      showEnvironmentDiv(calculation_response.quantity,calculation_response.distance, calculation_response.co2_emitted, message )
+      showEnvironmentDiv(qty,calculation_response.distance, calculation_response.co2_emitted, message )
 
 
       //PENDIENTE: SI NO TIENE EMISIONES, QUE EL CHECK ESTE VERDE.

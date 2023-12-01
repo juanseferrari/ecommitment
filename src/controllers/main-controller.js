@@ -91,6 +91,9 @@ const mainController = {
   },
   demo2: (req,res) => {
     res.render("environmentDiv2")
+  },
+  demo3: (req,res) => {
+    res.render("environmentDiv3")
   }
 };
 
