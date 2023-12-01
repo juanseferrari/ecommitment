@@ -46,8 +46,33 @@ const mainController = {
     const cart_data = req.body.cart
     const store_data = req.body.store
 
+    let return_object = {}
+
     console.log("cart_data: " + cart_data)
     console.log("store_data: " + store_data)
+
+    if(!cart_data.shippingAddress.address){
+      //No hay address
+      return_object = {
+        "quantity": 0, //Esto seria que cantidad de producto le mandamos al checkout
+        "distance": 0, //Distancia del envío
+        "distance_unit": "km", //Unidad de medida
+        "co2_emitted": 0 //CO2 emitido
+        //"cart_id": cart_id, //ID del carrito
+        //cart_data ,
+        //store_data
+    }
+    } else {
+      return_object = {
+        "quantity": 8, //Esto seria que cantidad de producto le mandamos al checkout
+        "distance": 18, //Distancia del envío
+        "distance_unit": "km", //Unidad de medida
+        "co2_emitted": 12 //CO2 emitido
+        //"cart_id": cart_id, //ID del carrito
+        //cart_data ,
+        //store_data
+     }
+    }
 
 
     //let shipping_data = cart_data.shippingAddress
@@ -57,20 +82,15 @@ const mainController = {
     //let store_id = store_data.id
     //ANALIZAR DISTANCIAS Y VER COMO HACER ESA PARTE
 
-    let return_object = {
-        "quantity": 12, //Esto seria que cantidad de producto le mandamos al checkout
-        "distance": 13, //Distancia del envío
-        "distance_unit": "km", //Unidad de medida
-        "co2_emitted": 23 //CO2 emitido
-        //"cart_id": cart_id, //ID del carrito
-        //cart_data ,
-        //store_data
-    }
+
 
     res.json(return_object)
   },
   demo1: (req,res) => {
     res.render("environmentDiv1")
+  },
+  demo2: (req,res) => {
+    res.render("environmentDiv2")
   }
 };
 

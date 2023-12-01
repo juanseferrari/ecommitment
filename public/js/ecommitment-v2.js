@@ -1,5 +1,5 @@
 (function () {
-
+  
   //GLOBALS
   const store_id = LS.store.id
   const product_id = window.localStorage.getItem('Ecommitment-product_id');
@@ -52,22 +52,18 @@
 
     // Set the HTML content of the subtotalDiv using innerHTML
     newDiv.innerHTML = `
+
     <div class="ecomm-container">
     <div class="switch-container">
       <!-- Rounded switch -->
       <div style="display: flex;">
-        <label class="switch">
-          <input type="checkbox" id="ecomm-mainSwitch">
-          <span class="slider round">
-          </span>
-        </label>
         <div class="ecomm-switch-logo">
           <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente.png" alt="">
         </div>
       </div>
       <div style="display: flex;">
         <div class="info-container">
-          <div class="info-icon" id="ecomm-infoButton">
+          <div class="info-icon" onclick="openModal()">
             <svg class="info-icon-svg" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
               viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
               <path
@@ -78,7 +74,7 @@
 
         <div class="modal" id="ecomm-infoModal">
           <div class="modal-content">
-            <span class="close-btn" id="ecomm-infoClose">&times;</span>
+            <span class="close-btn" onclick="closeModal()">&times;</span>
             <p>This is the information you want to display in the modal.</p>
           </div>
         </div>
@@ -87,20 +83,33 @@
     </div>
     <div class="ecomm-description-container">
       <p>
-        <span>Compra con impacto:</span> Convierte tu compra en un compromiso ecológico adicional. ${text}
+        <span>Compra con impacto2:</span> Convierte tu compra en un compromiso ecológico adicional.
       </p>
     </div>
     <div class="ecomm-midtext-container">
       <div class="ecomm-midtext-left">
         <p>🚚 Distancia envío: ${distance} km</p>
-        <p>💨 CO2 emitidos: ${co2} ppm</p>
+        <p>💨 CO2 emitidos: ${co2_emitted} ppm</p>
+        <p>💨 Cant bonos: ${environmentAmount} ppm</p>
+        <p>💵 Costo Bono: $10</p>
       </div>
-      <div>
-        <h1>${environmentAmount} 🌎</h1>
+      <div class="ecomm-midtext-right">
+        <h1 id="ecomm-total-amount">Total: $ ${environmentAmount * 10}</h1>
+      </div>
+
+    </div>
+    <div class="ecomm-bottom-container">
+      <div class="button-container">
+        <button class="select-button" data-value="0">0x</button>
+        <button class="select-button" data-value="0.5">0.5x</button>
+        <button class="select-button active" data-value="1">1x</button>
+        <button class="select-button" data-value="2">2x</button>
+        <button class="select-button" data-value="4">4x</button>
       </div>
 
     </div>
   </div>
+
         `;
 
 
@@ -109,19 +118,12 @@
 
     // Set the CSS rules as text content
     style.textContent = `
-    /** CONTAINER CSS */
     .ecomm-container {
       margin: 20px 0;
       border: 1px solid rgba(67,67,67,0.3);
       padding: 10px;
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgba(255, 255, 255, 1);
       display: block;
-      /** 
-
-      border-radius: 16px;
-      box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.1);
-      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
-      */
     }
   
     .ecomm-description-container {
@@ -139,6 +141,10 @@
     .ecomm-midtext-container {
       display: flex;
       justify-content: space-between;
+    }
+    .ecomm-midtext-right {
+      display: flex;
+      align-items: center;
     }
   
     .ecomm-switch-logo {
@@ -294,6 +300,31 @@
       font-size: 20px;
       cursor: pointer;
     }
+
+
+    /** BUTTON CSS */
+
+.button-container {
+  display: flex;
+  justify-content: space-evenly;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.select-button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 16px;
+}
+
+.select-button.active {
+  background-color: #34a77c; /* Change to your desired active color */
+  color: #fff; /* Change to your desired text color when active */
+}
            `;
 
     // Append the style element to the document's head
@@ -548,8 +579,9 @@
       //Validar el address
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
+        
            console.log("NO TIENE ADDRESS")
-           message = "No hay emisiones en este pedido."
+           message = "No hay emisiones en este pedido. "
       } else {
            console.log("TIENE ADDRESS")
            message = "Tiene emisiones, texto variable."
@@ -560,33 +592,26 @@
       for (let p = 0; p < LS.cart.items.length; p++) {
         if (LS.cart.items[p].variant_id == window.localStorage.getItem('Ecommitment-variant_id')) {
           console.log("variant " + window.localStorage.getItem('Ecommitment-variant_id') + " existe")
-          switchCheckbox.checked = true;
         }
       }
 
-      // Check the state of the switch when it is clicked
-      switchCheckbox.addEventListener('change', function () {
-        if (switchCheckbox.checked) {
-          console.log('Switch is ON');
-          //Add product to cart for the amount given. 
-          addProductToCart(product_id,variant_id,calculation_response.quantity)
+      document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('.select-button');
+        let total_amount = document.getElementById("ecomm-total-amount")
+        buttons.forEach(button => {
+          button.addEventListener('click', function () {
+            buttons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+      
+            const selectedValue = this.getAttribute('data-value');
+            console.log(`Selected value: ${selectedValue}`);
+            total_amount.textContent = "Total: $" + (10 * selectedValue * calculation_response.quantity)
 
-          // Call the function to initiate the delay and page reload
-          reloadPageAfterDelay();
-
-        } else {
-          //REMOVE PRODUCT. 
-          console.log('Switch is OFF');
-          //Remove product from cart for the amount given. 
-          removeUniqueProductFromCart(0)
-
-          console.log("log after remove product")
-
-          // Call the function to initiate the delay and page reload
-          reloadPageAfterDelay();
-
-        }
+          });
+        });
       });
+      
+
       infoButton.addEventListener('click', function () {
         openModal()
       })
