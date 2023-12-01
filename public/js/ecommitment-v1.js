@@ -55,10 +55,6 @@
 
 
   function showEnvironmentDiv(environmentAmount, distance, co2, text) {
-    // Get the div element with class "table-subtotal"
-    var reviewDiv = document.querySelector('.review-block-detailed');
-    var reviewDiv2 = document.getElementById('preReviewBlockSlot')
-    var reviewDiv3 = document.querySelector('.loading-skeleton')
 
     var newDiv = document.createElement('div');
 
@@ -115,14 +111,6 @@
   </div>
         `;
 
-        reviewDiv2.nextElementSibling.insertAdjacentElement('afterend', newDiv);
-        //reviewDiv3.nextElementSibling.insertAdjacentElement('afterend', newDiv);
-
-
-
-
-    // Set the height of the parent div to 20px
-    //subtotalDiv.style.height = '20px';
 
     // Create a style element
     var style = document.createElement('style');
@@ -316,6 +304,32 @@
 
     // Append the style element to the document's head
     //background-image: url('https://juanseferrari.github.io/ecommitment/public/images/earth.svg');
+
+    // Get the div element with class "table-subtotal"
+    let divToAddContainer
+
+    var reviewDiv1 = document.querySelector('.review-block-detailed');
+    var reviewDiv2 = document.getElementById('preReviewBlockSlot')
+    var reviewDiv3 = document.querySelector('.loading-skeleton')
+    var reviewDiv4 = document.querySelector('.panel.panel-with-header');
+
+
+    /** 
+    if(reviewDiv1){
+      //Si existe el review block, agregarlo ahi
+      console.log("reviewDiv1")
+      reviewDiv1.insertAdjacentElement('afterend', newDiv);
+    } else if (!reviewDiv1 && reviewDiv2){
+      console.log("!reviewDiv1 && reviewDiv2")
+      reviewDiv2.nextElementSibling.insertAdjacentElement('afterend', newDiv);
+    } else {
+
+    }
+   */
+    reviewDiv4.insertAdjacentElement('beforebegin', newDiv);
+    //reviewDiv3.nextElementSibling.insertAdjacentElement('afterend', newDiv);
+
+
 
     document.head.appendChild(style);
     switchCheckbox = document.getElementById('ecomm-mainSwitch');
@@ -538,21 +552,11 @@
 
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
-        console.log("NO TIENE ADDRESS")
-
-        window.onload = function() {
+           console.log("NO TIENE ADDRESS")
           showEnvironmentDiv(0, 0, 0, "No hay emisiones en este pedido. ")
-
-        };
       } else {
-        console.log("TIENE ADDRESS")
-
-        window.onload = function() {
+           console.log("TIENE ADDRESS")
           showEnvironmentDiv(calculation_response.quantity,calculation_response.distance, calculation_response.co2_emitted, "TEXTO" )
-
-        };
-
-
       }
 
 
