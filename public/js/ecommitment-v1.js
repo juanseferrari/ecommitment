@@ -115,7 +115,8 @@
   </div>
         `;
 
-        reviewDiv3.insertAdjacentElement('afterend', newDiv);
+        reviewDiv2.nextElementSibling.insertAdjacentElement('afterend', newDiv);
+        //reviewDiv3.nextElementSibling.insertAdjacentElement('afterend', newDiv);
 
 
 
@@ -526,6 +527,7 @@
   if (window.location.pathname.startsWith('/checkout/v3/next/')) {
     console.log("next path")
 
+    //Chequear si tiene el producto cargado como bono ambiental.
 
 
     //Obtener la data de la calculadora
@@ -537,12 +539,19 @@
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
         console.log("NO TIENE ADDRESS")
-          // Reload the page after 1 second1
+
+        window.onload = function() {
           showEnvironmentDiv(0, 0, 0, "No hay emisiones en este pedido. ")
+
+        };
       } else {
         console.log("TIENE ADDRESS")
-          // Reload the page after 1 second1
+
+        window.onload = function() {
           showEnvironmentDiv(calculation_response.quantity,calculation_response.distance, calculation_response.co2_emitted, "TEXTO" )
+
+        };
+
 
       }
 
