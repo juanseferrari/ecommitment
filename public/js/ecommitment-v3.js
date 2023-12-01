@@ -72,7 +72,7 @@
       </div>
       <div class="ecomm-toggle-button">
           <label class="switch">
-            <input type="checkbox" id="mySwitch">
+            <input type="checkbox" id="ecomm-mainSwitch">
             <span class="slider round">
             </span>
           </label>
@@ -122,11 +122,6 @@
     .ecomm-description-container p {
       font-size: 20px;
     }
-  
-    .ecomm-description-container span {
-      font-weight: bold;
-    }
-
   
     .ecomm-logo {
       height: 34px;
