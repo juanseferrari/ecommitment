@@ -89,8 +89,8 @@
     <div class="ecomm-midtext-container">
       <div class="ecomm-midtext-left">
         <p>🚚 Distancia envío: ${distance} km</p>
-        <p>💨 CO2 emitidos: ${co2_emitted} ppm</p>
-        <p>💨 Cant bonos: ${co2} ppm</p>
+        <p>💨 CO2 emitidos: ${co2} ppm</p>
+        <p>💨 Cant bonos: ${environmentAmount} ppm</p>
         <p>💵 Costo Bono: $10</p>
       </div>
       <div class="ecomm-midtext-right">
