@@ -19,7 +19,8 @@ app.use((req, res, next) => {
 
     const allowedOrigins = [
         'https://sheetscentraldemo2.mitiendanube.com',
-        "https://sheetscentral.com"
+        "https://sheetscentral.com",
+        "https://www.maniacba.com.ar"
         // Add more origins as needed
       ];
     

@@ -58,6 +58,8 @@
     // Get the div element with class "table-subtotal"
     var reviewDiv = document.querySelector('.review-block-detailed');
     var reviewDiv2 = document.getElementById('preReviewBlockSlot')
+    var reviewDiv3 = document.querySelector('.loading-skeleton')
+
     var newDiv = document.createElement('div');
 
     // Set the HTML content of the subtotalDiv using innerHTML
@@ -113,7 +115,7 @@
   </div>
         `;
 
-        reviewDiv2.nextElementSibling.insertAdjacentElement('afterend', newDiv);
+        reviewDiv3.insertAdjacentElement('afterend', newDiv);
 
 
 
@@ -524,7 +526,6 @@
   if (window.location.pathname.startsWith('/checkout/v3/next/')) {
     console.log("next path")
 
-    //Chequear si tiene el producto cargado como bono ambiental.
 
 
     //Obtener la data de la calculadora
