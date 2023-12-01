@@ -24,7 +24,8 @@
   let switchCheckbox = document.getElementById('ecomm-mainSwitch');
   let infoButton = document.getElementById('ecomm-infoButton');
   let infoClose = document.getElementById('ecomm-infoClose');
-
+  let buttons = document.querySelectorAll('.select-button');
+  let total_amount = document.getElementById("ecomm-total-amount")
   //OBTENER INFO DEL SHIPPING Y CALCULAR DISTANCIA Y DEVOLVER EL environmentAmount
 
 
@@ -360,7 +361,8 @@
     switchCheckbox = document.getElementById('ecomm-mainSwitch');
     infoButton = document.getElementById('ecomm-infoButton');
     infoClose = document.getElementById('ecomm-infoClose');
-
+    buttons = document.querySelectorAll('.select-button');
+    total_amount = document.getElementById("ecomm-total-amount")
   } //End function add EnvironmentDivv2
 
   function addProductToCart(product_id,variant_id,quantity) {
@@ -595,9 +597,6 @@
         }
       }
 
-      document.addEventListener('DOMContentLoaded', function () {
-        const buttons = document.querySelectorAll('.select-button');
-        let total_amount = document.getElementById("ecomm-total-amount")
         buttons.forEach(button => {
           button.addEventListener('click', function () {
             buttons.forEach(btn => btn.classList.remove('active'));
@@ -609,7 +608,6 @@
 
           });
         });
-      });
       
 
       infoButton.addEventListener('click', function () {
