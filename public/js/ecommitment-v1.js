@@ -557,6 +557,8 @@
       showEnvironmentDiv(calculation_response.quantity,calculation_response.distance, calculation_response.co2_emitted, message )
 
 
+      //PENDIENTE: SI NO TIENE EMISIONES, QUE EL CHECK ESTE VERDE.
+
       for (let p = 0; p < LS.cart.items.length; p++) {
         if (LS.cart.items[p].variant_id == window.localStorage.getItem('Ecommitment-variant_id')) {
           console.log("variant " + window.localStorage.getItem('Ecommitment-variant_id') + " existe")
