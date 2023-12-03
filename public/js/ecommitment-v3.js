@@ -288,7 +288,7 @@
 
   } //End function add EnvironmentDivv2
 
-  function addProductToCart(product_id,variant_id,quantity) {
+  async function addProductToCart(product_id,variant_id,quantity) {
     console.log("addProductToCart")
     if (LS.cart.items) {
       console.log("LSproduct")
@@ -299,7 +299,7 @@
       data.append('variant_id', variant_id); //variant_id
       data.append('quantity', quantity); //quantity
 
-      fetch('/comprar/', {
+      await fetch('/comprar/', {
         method: 'POST',
         body: data,
         headers: {
@@ -321,7 +321,7 @@
     }
   }
 
-  function removeUniqueProductFromCart(quantity) {
+  async function removeUniqueProductFromCart(quantity) {
     let items_on_cart = LS.cart.items
     console.log("items_on_cart")
     console.log(items_on_cart)
@@ -349,7 +349,7 @@
       console.log("Request Body:", body.toString());
 
 
-      fetch("/cart/update/", {
+      await fetch("/cart/update/", {
         method: "POST",
         body: body,
         headers: {
@@ -528,7 +528,7 @@
 
           // Call the function to initiate the delay and page reload
           reloadPageAfterDelay();
-          
+
         } else {
           //REMOVE PRODUCT. 
           console.log('Switch is OFF');
