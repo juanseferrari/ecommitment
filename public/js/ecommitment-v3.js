@@ -524,7 +524,7 @@
         if (switchCheckbox.checked) {
           console.log('Switch is ON');
           //Add product to cart for the amount given. 
-          addProductToCart(product_id,variant_id,calculation_response.quantity)
+          addProductToCart(product_id,variant_id,qty)
 
           // Call the function to initiate the delay and page reload
           reloadPageAfterDelay();
