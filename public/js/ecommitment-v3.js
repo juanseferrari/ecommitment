@@ -528,18 +528,28 @@
 
           // Call the function to initiate the delay and page reload
           reloadPageAfterDelay();
+          switchCheckbox.addEventListener('transitionend', reloadPageAfterDelay, { once: true });
 
         } else {
           //REMOVE PRODUCT. 
           console.log('Switch is OFF');
           switchCheckbox.checked = false;
           //Remove product from cart for the amount given. 
-          removeUniqueProductFromCart(0)
+          //removeUniqueProductFromCart(0)
 
           console.log("log after remove product")
 
           // Call the function to initiate the delay and page reload
-          reloadPageAfterDelay();
+          //reloadPageAfterDelay();
+
+          switchCheckbox.addEventListener(
+            "transitionend",
+            function (event) {
+              console.log("inside transitionend")
+              return true
+            },
+            false,
+          );
 
         }
       });
