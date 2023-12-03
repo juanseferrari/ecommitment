@@ -527,7 +527,7 @@
           addProductToCart(product_id,variant_id,qty)
 
           // Call the function to initiate the delay and page reload
-          reloadPageAfterDelay();
+          switchCheckbox.addEventListener('transitionend', reloadPageAfterDelay, { once: true });
 
         } else {
           //REMOVE PRODUCT. 
@@ -539,7 +539,7 @@
           console.log("log after remove product")
 
           // Call the function to initiate the delay and page reload
-          reloadPageAfterDelay();
+          switchCheckbox.addEventListener('transitionend', reloadPageAfterDelay, { once: true });
 
         }
       });
