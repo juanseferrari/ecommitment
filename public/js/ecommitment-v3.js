@@ -321,7 +321,7 @@
     }
   }
 
-  async function removeUniqueProductFromCart(quantity) {
+  function removeUniqueProductFromCart(quantity) {
     let items_on_cart = LS.cart.items
     console.log("items_on_cart")
     console.log(items_on_cart)
@@ -349,7 +349,7 @@
       console.log("Request Body:", body.toString());
 
 
-      await fetch("/cart/update/", {
+      fetch("/cart/update/", {
         method: "POST",
         body: body,
         headers: {
