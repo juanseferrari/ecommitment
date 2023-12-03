@@ -357,6 +357,10 @@
         },
       })
         .then((response) => {
+          console.log("response")
+          console.log(response)
+          console.log("response")
+
           if (response.ok) {
             console.log("success remove cart");
             console.log(response)
@@ -533,9 +537,8 @@
         } else {
           //REMOVE PRODUCT. 
           console.log('Switch is OFF');
-          switchCheckbox.checked = false;
           //Remove product from cart for the amount given. 
-          //removeUniqueProductFromCart(0)
+          removeUniqueProductFromCart(0)
 
           console.log("log after remove product")
 
@@ -547,8 +550,7 @@
             function (event) {
               console.log("inside transitionend")
               return true
-            },
-            false,
+            }
           );
 
         }
