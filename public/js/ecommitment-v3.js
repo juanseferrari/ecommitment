@@ -80,7 +80,7 @@
 
     </div>
       <div class="info-container">
-        <div class="info-icon" onclick="openModal()">
+        <div class="info-icon" id="ecomm-infoButton">
           <svg class="info-icon-svg" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
             viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
             <path
@@ -91,7 +91,7 @@
 
       <div class="modal" id="ecomm-infoModal">
         <div class="modal-content">
-          <span class="close-btn" onclick="closeModal()">&times;</span>
+          <span class="close-btn" id="ecomm-infoClose">&times;</span>
           <p>🚚 Distancia envío: ${distance} km</p>
           <p>💨 CO2 emitidos: ${co2} ppm</p>        </div>
       </div>
@@ -532,6 +532,7 @@
         } else {
           //REMOVE PRODUCT. 
           console.log('Switch is OFF');
+          switchCheckbox.checked = false;
           //Remove product from cart for the amount given. 
           removeUniqueProductFromCart(0)
 
