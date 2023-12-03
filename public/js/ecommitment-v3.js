@@ -527,8 +527,8 @@
           addProductToCart(product_id,variant_id,qty)
 
           // Call the function to initiate the delay and page reload
-          switchCheckbox.addEventListener('transitionend', reloadPageAfterDelay, { once: true });
-
+          reloadPageAfterDelay();
+          
         } else {
           //REMOVE PRODUCT. 
           console.log('Switch is OFF');
@@ -539,7 +539,7 @@
           console.log("log after remove product")
 
           // Call the function to initiate the delay and page reload
-          switchCheckbox.addEventListener('transitionend', reloadPageAfterDelay, { once: true });
+          reloadPageAfterDelay();
 
         }
       });
