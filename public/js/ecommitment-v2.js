@@ -451,8 +451,7 @@
       // Reload the page after 1 second1
       window.location.reload();
     }, 200); // 1000 milliseconds = 1 second
-    switchCheckbox.checked = true;
-    console.log("checked")
+    console.log("reloaded")
   }
 
 
@@ -621,6 +620,7 @@
             const selectedValue = this.getAttribute('data-value');
             console.log(`Selected value: ${selectedValue}`);
             total_amount.textContent = "Total: $" + (10 * selectedValue * qty)
+
             updateUniqueProductFromCart(product_id, variant_id, (qty * selectedValue))
           });
         });
