@@ -384,8 +384,7 @@
       // Reload the page after 1 second1
       window.location.reload();
     }, 200); // 1000 milliseconds = 1 second
-    switchCheckbox.checked = true;
-    console.log("checked")
+    console.log("reloaded")
   }
 
 
