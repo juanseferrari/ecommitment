@@ -371,6 +371,7 @@
         })
         .catch((error) => {
           console.error("Error:", error);
+          reloadPageAfterDelay()
         });
 
     }
@@ -544,15 +545,6 @@
 
           // Call the function to initiate the delay and page reload
           //reloadPageAfterDelay();
-
-          switchCheckbox.addEventListener(
-            "transitionend",
-            function (event) {
-              console.log("inside transitionend")
-              return true
-            }
-          );
-
         }
       });
       infoButton.addEventListener('click', function () {
