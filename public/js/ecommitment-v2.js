@@ -97,7 +97,7 @@
 
       </div>
       <div class="ecomm-midtext-right">
-        <h1 id="ecomm-total-amount">Total: $ ${environmentAmount * 10}</h1>
+        <h1 id="ecomm-total-amount">Total: $ ${environmentAmount * 10 * active_quantity}</h1>
       </div>
 
     </div>
