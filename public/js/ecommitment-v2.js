@@ -93,6 +93,8 @@
         <p>💨 CO2 emitidos: ${co2} ppm</p>
         <p>💨 Cant bonos: ${environmentAmount} ppm</p>
         <p>💵 Costo Bono: $10</p>
+        <p>💵 active_quantity: ${active_quantity}</p>
+
       </div>
       <div class="ecomm-midtext-right">
         <h1 id="ecomm-total-amount">Total: $ ${environmentAmount * 10}</h1>
@@ -388,7 +390,7 @@
   }
 
 
-  async function updateUniqueProductFromCart(quantity) {
+  async function updateUniqueProductFromCart(quantity,vid) {
     let items_on_cart = LS.cart.items
     console.log("items_on_cart")
     console.log(items_on_cart)
@@ -617,8 +619,7 @@
             const selectedValue = this.getAttribute('data-value');
             console.log(`Selected value: ${selectedValue}`);
             total_amount.textContent = "Total: $" + (10 * selectedValue * qty)
-            updateUniqueProductFromCart(qty * selectedValue)
-
+            updateUniqueProductFromCart((qty * selectedValue), variant_id)
           });
         });
       
