@@ -101,11 +101,11 @@
     </div>
     <div class="ecomm-bottom-container">
       <div class="button-container">
-        <button class="select-button ${active_quantity = 0 ? 'active': ''}" data-value="0">0x</button>
-        <button class="select-button ${active_quantity = 0.5 ? 'active': ''}" data-value="0.5">0.5x</button>
-        <button class="select-button ${active_quantity = 1 ? 'active': ''}" data-value="1">1x</button>
-        <button class="select-button ${active_quantity = 2 ? 'active': ''}" data-value="2">2x</button>
-        <button class="select-button ${active_quantity = 4 ? 'active': ''}" data-value="4">4x</button>
+        <button class="select-button ${active_quantity == 0 ? 'active': ''}" data-value="0">0x</button>
+        <button class="select-button ${active_quantity == 0.5 ? 'active': ''}" data-value="0.5">0.5x</button>
+        <button class="select-button ${active_quantity == 1 ? 'active': ''}" data-value="1">1x</button>
+        <button class="select-button ${active_quantity == 2 ? 'active': ''}" data-value="2">2x</button>
+        <button class="select-button ${active_quantity == 4 ? 'active': ''}" data-value="4">4x</button>
       </div>
 
     </div>
@@ -595,6 +595,9 @@
       if(bono_exists){
         console.log("bono_exists")
         let new_quantity = bono_item.quantity / qty
+        console.log("new_quantity")
+        console.log(new_quantity)
+        console.log("new_quantity")
         showEnvironmentDiv(qty, calculation_response.co2_emitted, message, new_quantity)
       } else {
         addProductToCart(product_id,variant_id,qty)
