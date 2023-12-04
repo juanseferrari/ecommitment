@@ -93,8 +93,6 @@
         <p>💨 CO2 emitidos: ${co2} ppm</p>
         <p>💨 Cant bonos: ${environmentAmount} ppm</p>
         <p>💵 Costo Bono: $10</p>
-        <p>💵 active_quantity: ${active_quantity}</p>
-
       </div>
       <div class="ecomm-midtext-right">
         <h1 id="ecomm-total-amount">Total: $ ${environmentAmount * 10 * active_quantity}</h1>
@@ -602,13 +600,15 @@
         console.log("new_quantity")
         showEnvironmentDiv(qty,calculation_response.distance, calculation_response.co2_emitted, message, new_quantity)
       } else {
+        showEnvironmentDiv(qty, calculation_response.distance, calculation_response.co2_emitted, message, 0)
+        /**  
         if(qty !== 0){
           addProductToCart(product_id,variant_id,qty)
           reloadPageAfterDelay();
         } else {
           showEnvironmentDiv(qty, calculation_response.distance, calculation_response.co2_emitted, message, 0)
         }
-
+        */
       }
 
         buttons.forEach(button => {
