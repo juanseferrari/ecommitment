@@ -388,7 +388,7 @@
   }
 
 
-  async function updateUniqueProductFromCart(quantity,vid) {
+  async function updateUniqueProductFromCart(pid,vid,quantity) {
     let items_on_cart = LS.cart.items
     console.log("items_on_cart")
     console.log(items_on_cart)
@@ -438,6 +438,8 @@
           reloadPageAfterDelay()
         });
 
+    } else if (result.length === 0){
+      addProductToCart(pid,vid,quantity) 
     }
 
   }
