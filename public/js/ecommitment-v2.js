@@ -379,12 +379,15 @@
         .then(response => {
           if (response.ok) {
             console.log('success');
+            reloadPageAfterDelay()
           } else {
             console.log('error');
+            reloadPageAfterDelay()
           }
         })
         .catch(error => {
           console.error('Error:', error);
+          reloadPageAfterDelay()
         });
 
 
@@ -435,6 +438,8 @@
           } else {
             console.log("error remove cart");
             console.log(response)
+            reloadPageAfterDelay()
+
           }
         })
         .catch((error) => {
