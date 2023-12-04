@@ -64,7 +64,7 @@
       </div>
       <div style="display: flex;">
         <div class="info-container">
-          <div class="info-icon" onclick="openModal()">
+          <div class="info-icon" id="ecomm-infoButton">
             <svg class="info-icon-svg" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
               viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
               <path
@@ -75,7 +75,7 @@
 
         <div class="modal" id="ecomm-infoModal">
           <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <span class="close-btn" id="ecomm-infoClose">&times;</span>
             <p>This is the information you want to display in the modal.</p>
           </div>
         </div>
@@ -313,7 +313,7 @@
 }
 
 .select-button {
-  padding: 10px 20px;
+  padding: 10px 30px;
   margin: 5px;
   font-size: 16px;
   cursor: pointer;
@@ -326,34 +326,23 @@
   background-color: #34a77c; /* Change to your desired active color */
   color: #fff; /* Change to your desired text color when active */
 }
+
+@media only screen and (max-width: 767px) {
+  /* Your mobile-specific styles go here */
+  .select-button {
+    padding: 10px 15px;
+   
+  }
+}
            `;
 
     // Append the style element to the document's head
     //background-image: url('https://juanseferrari.github.io/ecommitment/public/images/earth.svg');
 
-    // Get the div element with class "table-subtotal"
-    let divToAddContainer
 
-    var reviewDiv1 = document.querySelector('.review-block-detailed');
-    var reviewDiv2 = document.getElementById('preReviewBlockSlot')
-    var reviewDiv3 = document.querySelector('.loading-skeleton')
     var reviewDiv4 = document.querySelector('.panel.panel-with-header');
 
-
-    /** 
-    if(reviewDiv1){
-      //Si existe el review block, agregarlo ahi
-      console.log("reviewDiv1")
-      reviewDiv1.insertAdjacentElement('afterend', newDiv);
-    } else if (!reviewDiv1 && reviewDiv2){
-      console.log("!reviewDiv1 && reviewDiv2")
-      reviewDiv2.nextElementSibling.insertAdjacentElement('afterend', newDiv);
-    } else {
-
-    }
-   */
     reviewDiv4.insertAdjacentElement('beforebegin', newDiv);
-    //reviewDiv3.nextElementSibling.insertAdjacentElement('afterend', newDiv);
 
 
 
