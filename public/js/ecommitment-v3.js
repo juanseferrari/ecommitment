@@ -341,7 +341,7 @@
     if (result.length === 1) {
 
       //Existe un solo SKU
-      console.log("EXISTE UN SOLO SKU ")
+      console.log("EXISTE UN SOLO SKU CON NUEVA FORMULA")
 
       let item_id = result[0].id.toString()
       console.log("item_id")
