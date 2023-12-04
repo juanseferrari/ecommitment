@@ -321,14 +321,19 @@
     }
   }
 
-  async function removeUniqueProductFromCart(quantity) {
+  async function removeUniqueProductFromCart(quantity,vid) {
     let items_on_cart = LS.cart.items
     console.log("items_on_cart")
     console.log(items_on_cart)
     console.log("items_on_cart")
 
+    /**
     var result = items_on_cart.filter(obj => {
       return obj.sku === "BSG1234A"
+    })
+    */
+    var result = items_on_cart.filter(obj => {
+      return obj.variant_id == vid
     })
     console.log("result")
     console.log(result)
@@ -371,7 +376,7 @@
         })
         .catch((error) => {
           console.error("Error:", error);
-          reloadPageAfterDelay()
+          //reloadPageAfterDelay()
         });
 
     }
@@ -384,6 +389,7 @@
       // Reload the page after 1 second1
       window.location.reload();
     }, 200); // 1000 milliseconds = 1 second
+    //switchCheckbox.checked = true;
     console.log("reloaded")
   }
 
@@ -538,7 +544,7 @@
           //REMOVE PRODUCT. 
           console.log('Switch is OFF');
           //Remove product from cart for the amount given. 
-          removeUniqueProductFromCart(0)
+          removeUniqueProductFromCart(0,variant_id)
 
           console.log("log after remove product")
 
