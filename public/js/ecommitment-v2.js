@@ -600,13 +600,13 @@
         console.log("new_quantity")
         console.log(new_quantity)
         console.log("new_quantity")
-        showEnvironmentDiv(qty, calculation_response.co2_emitted, message, new_quantity)
+        showEnvironmentDiv(qty,calculation_response.distance, calculation_response.co2_emitted, message, new_quantity)
       } else {
         if(qty !== 0){
           addProductToCart(product_id,variant_id,qty)
           reloadPageAfterDelay();
         } else {
-          showEnvironmentDiv(qty, calculation_response.co2_emitted, message, 0)
+          showEnvironmentDiv(qty, calculation_response.distance, calculation_response.co2_emitted, message, 0)
         }
 
       }
