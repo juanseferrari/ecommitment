@@ -333,7 +333,6 @@
     })
     */
     var result = items_on_cart.filter(obj => {
-      console.log("obj.variant_id == vid")
       return obj.variant_id == vid
     })
     console.log("result")
@@ -370,6 +369,8 @@
           if (response.ok) {
             console.log("success remove cart");
             console.log(response)
+            reloadPageAfterDelay()
+
           } else {
             console.log("error remove cart");
             console.log(response)
@@ -377,7 +378,7 @@
         })
         .catch((error) => {
           console.error("Error:", error);
-          //reloadPageAfterDelay()
+          reloadPageAfterDelay()
         });
 
     }
