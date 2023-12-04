@@ -613,7 +613,8 @@
       }
 
         buttons.forEach(button => {
-          button.addEventListener('click', function () {
+          button.addEventListener('click', function (e) {
+            e.preventDefault()
             buttons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
       
