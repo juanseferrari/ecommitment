@@ -47,7 +47,7 @@
   }
 
 
-  function showEnvironmentDiv(environmentAmount, distance, co2, text) {
+  function showEnvironmentDiv(environmentAmount, distance, co2, text, active_quantity) {
 
     var newDiv = document.createElement('div');
 
@@ -101,11 +101,11 @@
     </div>
     <div class="ecomm-bottom-container">
       <div class="button-container">
-        <button class="select-button" data-value="0">0x</button>
-        <button class="select-button" data-value="0.5">0.5x</button>
-        <button class="select-button active" data-value="1">1x</button>
-        <button class="select-button" data-value="2">2x</button>
-        <button class="select-button" data-value="4">4x</button>
+        <button class="select-button ${active_quantity = 0 ? 'active': ''}" data-value="0">0x</button>
+        <button class="select-button ${active_quantity = 0.5 ? 'active': ''}" data-value="0.5">0.5x</button>
+        <button class="select-button ${active_quantity = 1 ? 'active': ''}" data-value="1">1x</button>
+        <button class="select-button ${active_quantity = 2 ? 'active': ''}" data-value="2">2x</button>
+        <button class="select-button ${active_quantity = 4 ? 'active': ''}" data-value="4">4x</button>
       </div>
 
     </div>
@@ -388,14 +388,14 @@
   }
 
 
-  async function removeUniqueProductFromCart(quantity) {
+  async function updateUniqueProductFromCart(quantity) {
     let items_on_cart = LS.cart.items
     console.log("items_on_cart")
     console.log(items_on_cart)
     console.log("items_on_cart")
 
     var result = items_on_cart.filter(obj => {
-      return obj.sku === "BSG1234A"
+      return obj.variant_id == vid
     })
     console.log("result")
     console.log(result)
@@ -403,7 +403,7 @@
     if (result.length === 1) {
 
       //Existe un solo SKU
-      console.log("EXISTE UN SOLO SKU ")
+      console.log("EXISTE UN SOLO SKU con variant_id")
 
       let item_id = result[0].id.toString()
       console.log("item_id")
@@ -427,6 +427,7 @@
           if (response.ok) {
             console.log("success remove cart");
             console.log(response)
+            reloadPageAfterDelay()
           } else {
             console.log("error remove cart");
             console.log(response)
@@ -434,6 +435,7 @@
         })
         .catch((error) => {
           console.error("Error:", error);
+          reloadPageAfterDelay()
         });
 
     }
@@ -556,8 +558,6 @@
   if (window.location.pathname.startsWith('/checkout/v3/next/')) {
     console.log("next path")
 
-    //Chequear si tiene el producto cargado como bono ambiental.
-
 
     //Obtener la data de la calculadora
     performCalculation().then((calculation_response) => {
@@ -566,24 +566,39 @@
       console.log("calculation_response")
 
       let message = ""
+      let qty = calculation_response.quantity
+
+      //Validar si tiene el producto en el carrito. Si no lo tiene, crearlo y refrescar. Si lo tiene, mostrar el div. 
+      let bono_exists = false
+      let bono_item = {}
+      for (let p = 0; p < LS.cart.items.length; p++) {
+        if (LS.cart.items[p].variant_id == window.localStorage.getItem('Ecommitment-variant_id')) {
+          console.log("variant " + window.localStorage.getItem('Ecommitment-variant_id') + " existe")
+          bono_exists = true
+          bono_item = LS.cart.items[p] 
+        }
+      }
+      console.log("bono_item")
+      console.log(bono_item)
+      console.log("bono_item")
 
       //Validar el address
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
-        
            console.log("NO TIENE ADDRESS")
            message = "No hay emisiones en este pedido. "
       } else {
            console.log("TIENE ADDRESS")
            message = "Tiene emisiones, texto variable."
       }
-      showEnvironmentDiv(calculation_response.quantity,calculation_response.distance, calculation_response.co2_emitted, message )
 
-
-      for (let p = 0; p < LS.cart.items.length; p++) {
-        if (LS.cart.items[p].variant_id == window.localStorage.getItem('Ecommitment-variant_id')) {
-          console.log("variant " + window.localStorage.getItem('Ecommitment-variant_id') + " existe")
-        }
+      if(bono_exists){
+        console.log("bono_exists")
+        let new_quantity = bono_item.quantity / qty
+        showEnvironmentDiv(qty, calculation_response.co2_emitted, message, new_quantity)
+      } else {
+        addProductToCart(product_id,variant_id,qty)
+        reloadPageAfterDelay();
       }
 
         buttons.forEach(button => {
@@ -593,7 +608,8 @@
       
             const selectedValue = this.getAttribute('data-value');
             console.log(`Selected value: ${selectedValue}`);
-            total_amount.textContent = "Total: $" + (10 * selectedValue * calculation_response.quantity)
+            total_amount.textContent = "Total: $" + (10 * selectedValue * qty)
+            updateUniqueProductFromCart(qty * selectedValue)
 
           });
         });

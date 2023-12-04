@@ -540,7 +540,6 @@
 
           // Call the function to initiate the delay and page reload
           reloadPageAfterDelay();
-          switchCheckbox.addEventListener('transitionend', reloadPageAfterDelay, { once: true });
 
         } else {
           //REMOVE PRODUCT. 
