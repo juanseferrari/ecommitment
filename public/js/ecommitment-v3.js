@@ -333,6 +333,7 @@
     })
     */
     var result = items_on_cart.filter(obj => {
+      console.log("obj.variant_id == vid")
       return obj.variant_id == vid
     })
     console.log("result")
