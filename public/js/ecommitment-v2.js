@@ -58,11 +58,14 @@
       <!-- Rounded switch -->
       <div style="display: flex;">
         <div class="ecomm-switch-logo">
-        ${active_quantity > 0 ? `
-        <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente_on.png" alt="">
-        ` : `
-          <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente.png" alt="">
-          `}
+          <a href="https://ecommitment-634117e74352.herokuapp.com/" style="cursor:pointer;" target="_blank">
+              ${active_quantity > 0 ? `
+                <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente_on.png" alt="">
+              ` : `
+                <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente.png" alt="">
+                `}
+          </a>
+
         </div>
       </div>
       <div style="display: flex;">

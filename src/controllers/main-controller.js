@@ -7,6 +7,10 @@ const url = require('url');
 
 const mainService = require("../services/main-service");
 
+//Ecommitment tokens. 
+const tn_client_id = "6107"
+const tn_client_secret = "d05ab78cfd8ec215ffe08d235cbf079a6c224c9b066b641e"
+
 
 
 const mainController = {
@@ -51,6 +55,8 @@ const mainController = {
     console.log("cart_data: " + cart_data)
     console.log("store_data: " + store_data)
 
+    //Obtener información de la location del store (para calcular la distancia origen y destino)
+
     if(!cart_data.shippingAddress.address){
       //No hay address
       return_object = {
@@ -94,7 +100,93 @@ const mainController = {
   },
   demo3: (req,res) => {
     res.render("environmentDiv3")
-  }
+  },
+  tnOauth: async (req, res) => {
+    let code = req.query.code
+
+    var urlencoded = new URLSearchParams();
+    urlencoded.append("client_id", tn_client_id);
+    urlencoded.append("client_secret", tn_client_secret);
+    urlencoded.append("grant_type", "authorization_code");
+    urlencoded.append("code", code);
+
+    var requestOptions = {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "User-Agent": "Ecommitment"
+      },
+      body: urlencoded,
+      redirect: 'follow'
+    };
+
+    let response = await fetch("https://www.tiendanube.com/apps/authorize/token", requestOptions)
+    let data = await response.json();
+    if (data['error']) {
+      //WIP despues manejar bien este error handling. 
+      let message = "No hemos podido validar la conexión con Tienda Nube. Por favor intente nuevamente."
+      res.render("error-page", { message })
+    } else {
+      /** FUNCIONO OK EL OAUTH */
+
+      // GET al store para traer mas informacion relevante de la store.
+      var GETrequestOptions = {
+        method: 'GET',
+        headers: {
+          "Authentication": "bearer" + data['access_token']
+        },
+        redirect: 'follow'
+      };
+      let tn_user_request_data = await fetch("https://api.tiendanube.com/v1/" + data['user_id'] + "/store", GETrequestOptions)
+      let tn_user_data = await tn_user_request_data.json();
+      //console.log(tn_user_data)
+      let access_token = data['access_token']
+      let store_id =  data['user_id'].toString()
+      let store_name = tn_user_data['name']['es']
+      let product_id
+      let variant_id
+
+
+      //CREATE PRODUCT
+      try {
+        let product_response = await mainService.createProduct(store_id,access_token)
+        let product_response_json = await product_response.json()
+
+        console.log("product_response_json")
+        console.log(product_response_json)
+        console.log("product_response_json")
+        if(product_response_json.status == "success"){
+          product_id = product_response_json.product_id
+          variant_id = product_response_json.variant_id
+        }
+
+      } catch (error) {
+        console.log(error)
+        let message = "Hubo un error al crear el producto. "
+        res.render("error-page", { message })
+      }
+
+      //SAVE INTO DB
+
+      let new_user_data = {
+        access_token,
+        store_id,
+        store_name,
+        product_id,
+        variant_id
+      }
+
+      let new_user_data_response = await mainService.newUser(new_user_data)
+      console.log("new_user_data_response")
+      console.log(new_user_data_response)
+      console.log("new_user_data_response")
+
+      res.render("configuration", {user_data: new_user_data})
+
+
+
+    } /** Fin del else error */
+  },
 };
 
 module.exports = mainController;
