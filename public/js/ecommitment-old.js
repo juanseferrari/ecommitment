@@ -53,49 +53,54 @@
     // Set the HTML content of the subtotalDiv using innerHTML
     newDiv.innerHTML = `
     <div class="ecomm-container">
-    <div class="title-container">
+    <div class="switch-container">
       <!-- Rounded switch -->
-        <a >
+      <div style="display: flex;">
+        <label class="switch">
+          <input type="checkbox" id="ecomm-mainSwitch">
+          <span class="slider round">
+          </span>
+        </label>
+        <div class="ecomm-switch-logo">
           <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente.png" alt="">
-        </a>
-      <div style="display: flex;" class="ecomm-amount">
-        <p>$ ${environmentAmount * 10}</p>
+        </div>
+      </div>
+      <div style="display: flex;">
+        <div class="info-container">
+          <div class="info-icon" id="ecomm-infoButton">
+            <svg class="info-icon-svg" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
+              viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+              <path
+                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+            </svg>
+          </div>
+        </div>
 
+        <div class="modal" id="ecomm-infoModal">
+          <div class="modal-content">
+            <span class="close-btn" id="ecomm-infoClose">&times;</span>
+            <p>This is the information you want to display in the modal.</p>
+          </div>
+        </div>
       </div>
       <!-- Description -->
     </div>
     <div class="ecomm-description-container">
-      <div class="ecomm-main-text">
-        <p>
-          <span>${text}</span>
-        </p>
+      <p>
+        <span>¡Transformá tu envío en carbono neutral!</span>  ${text}
+      </p>
+    </div>
+    <div class="ecomm-midtext-container">
+      <div class="ecomm-midtext-left">
+        <p>🚚 Distancia envío: ${distance} km</p>
+        <p>💨 CO2 emitidos: ${co2} ppm</p>
       </div>
-      <div class="ecomm-toggle-button">
-          <label class="switch">
-            <input type="checkbox" id="ecomm-mainSwitch">
-            <span class="slider round">
-            </span>
-          </label>
+      <div>
+        <h1>${environmentAmount} 🌎</h1>
       </div>
 
     </div>
-      <div class="info-container">
-        <div class="info-icon" id="ecomm-infoButton">
-          <svg class="info-icon-svg" xmlns="http://www.w3.org/2000/svg" height="16" width="16"
-            viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-            <path
-              d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
-          </svg>
-        </div>
-      </div>
-
-      <div class="modal" id="ecomm-infoModal">
-        <div class="modal-content">
-          <span class="close-btn" id="ecomm-infoClose">&times;</span>
-          <p>🚚 Distancia envío: ${distance} km</p>
-          <p>💨 CO2 emitidos: ${co2} ppm</p>        </div>
-      </div>
-    </div>
+  </div>
         `;
 
 
@@ -104,45 +109,59 @@
 
     // Set the CSS rules as text content
     style.textContent = `
+    /** CONTAINER CSS */
     .ecomm-container {
       margin: 20px 0;
       border: 1px solid rgba(67,67,67,0.3);
       padding: 10px;
-      background-color: rgba(255, 255, 255, 1);
+      background-color: rgba(255, 255, 255, 0.5);
       display: block;
+      /** 
+
+      border-radius: 16px;
+      box-shadow: 10px 10px 8px rgba(0, 0, 0, 0.1);
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+      */
     }
   
     .ecomm-description-container {
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
   
     .ecomm-description-container p {
       font-size: 20px;
     }
   
+    .ecomm-description-container span {
+      font-weight: bold;
+    }
+  
+    .ecomm-midtext-container {
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    .ecomm-switch-logo {
+      height: 34px;
+    }
+  
     .ecomm-logo {
       height: 34px;
     }
   
-    .title-container {
+    .switch-container {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       width: 100%;
       height: 34px;
     }
-    .title-container a {
-      cursor: pointer;
-    }
-    .ecomm-amount p{
-      font-size: 24px;
-      margin: 0;
-    }
   
-
+  
+    .ecomm-switch-logo {
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+    }
   
     .switch-amount {
       display: flex;
@@ -277,9 +296,34 @@
     }
            `;
 
+    // Append the style element to the document's head
+    //background-image: url('https://juanseferrari.github.io/ecommitment/public/images/earth.svg');
+
+    // Get the div element with class "table-subtotal"
+    let divToAddContainer
+
+    var reviewDiv1 = document.querySelector('.review-block-detailed');
+    var reviewDiv2 = document.getElementById('preReviewBlockSlot')
+    var reviewDiv3 = document.querySelector('.loading-skeleton')
     var reviewDiv4 = document.querySelector('.panel.panel-with-header');
 
+
+    /** 
+    if(reviewDiv1){
+      //Si existe el review block, agregarlo ahi
+      console.log("reviewDiv1")
+      reviewDiv1.insertAdjacentElement('afterend', newDiv);
+    } else if (!reviewDiv1 && reviewDiv2){
+      console.log("!reviewDiv1 && reviewDiv2")
+      reviewDiv2.nextElementSibling.insertAdjacentElement('afterend', newDiv);
+    } else {
+
+    }
+   */
     reviewDiv4.insertAdjacentElement('beforebegin', newDiv);
+    //reviewDiv3.nextElementSibling.insertAdjacentElement('afterend', newDiv);
+
+
 
     document.head.appendChild(style);
     switchCheckbox = document.getElementById('ecomm-mainSwitch');
@@ -288,7 +332,7 @@
 
   } //End function add EnvironmentDivv2
 
-  async function addProductToCart(product_id,variant_id,quantity) {
+  function addProductToCart(product_id,variant_id,quantity) {
     console.log("addProductToCart")
     if (LS.cart.items) {
       console.log("LSproduct")
@@ -299,7 +343,7 @@
       data.append('variant_id', variant_id); //variant_id
       data.append('quantity', quantity); //quantity
 
-      await fetch('/comprar/', {
+      fetch('/comprar/', {
         method: 'POST',
         body: data,
         headers: {
@@ -321,19 +365,15 @@
     }
   }
 
-  async function removeUniqueProductFromCart(quantity,vid) {
+
+  async function removeUniqueProductFromCart(quantity) {
     let items_on_cart = LS.cart.items
     console.log("items_on_cart")
     console.log(items_on_cart)
     console.log("items_on_cart")
 
-    /**
     var result = items_on_cart.filter(obj => {
       return obj.sku === "BSG1234A"
-    })
-    */
-    var result = items_on_cart.filter(obj => {
-      return obj.variant_id == vid
     })
     console.log("result")
     console.log(result)
@@ -341,7 +381,7 @@
     if (result.length === 1) {
 
       //Existe un solo SKU
-      console.log("EXISTE UN SOLO SKU CON NUEVA FORMULA")
+      console.log("EXISTE UN SOLO SKU ")
 
       let item_id = result[0].id.toString()
       console.log("item_id")
@@ -362,15 +402,9 @@
         },
       })
         .then((response) => {
-          console.log("response")
-          console.log(response)
-          console.log("response")
-
           if (response.ok) {
             console.log("success remove cart");
             console.log(response)
-            reloadPageAfterDelay()
-
           } else {
             console.log("error remove cart");
             console.log(response)
@@ -378,12 +412,12 @@
         })
         .catch((error) => {
           console.error("Error:", error);
-          reloadPageAfterDelay()
         });
 
     }
 
   }
+
 
   // Wait for 1 second (1000 milliseconds) and then reload the page
   function reloadPageAfterDelay() {
@@ -391,10 +425,13 @@
       // Reload the page after 1 second1
       window.location.reload();
     }, 200); // 1000 milliseconds = 1 second
-    //switchCheckbox.checked = true;
-    console.log("reloaded")
+    switchCheckbox.checked = true;
+    console.log("checked")
   }
 
+
+
+  //NEW CHATGPT FUNCTION
 
   async function calculator(cart_data, store_data) {
     console.log("calculator");
@@ -507,19 +544,17 @@
       console.log("calculation_response")
 
       let message = ""
-      let qty = calculation_response.quantity
 
       //Validar el address
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
            console.log("NO TIENE ADDRESS")
-           message = "¡Transformá tu envío en carbono neutral!"
-           qty = 1
+           message = "No hay emisiones en este pedido."
       } else {
            console.log("TIENE ADDRESS")
-           message = "¡Transformá tu envío en carbono neutral!"
+           message = "Tiene emisiones, texto variable."
       }
-      showEnvironmentDiv(qty,calculation_response.distance, calculation_response.co2_emitted, message )
+      showEnvironmentDiv(calculation_response.quantity,calculation_response.distance, calculation_response.co2_emitted, message )
 
 
       //PENDIENTE: SI NO TIENE EMISIONES, QUE EL CHECK ESTE VERDE.
@@ -536,7 +571,7 @@
         if (switchCheckbox.checked) {
           console.log('Switch is ON');
           //Add product to cart for the amount given. 
-          addProductToCart(product_id,variant_id,qty)
+          addProductToCart(product_id,variant_id,calculation_response.quantity)
 
           // Call the function to initiate the delay and page reload
           reloadPageAfterDelay();
@@ -545,12 +580,13 @@
           //REMOVE PRODUCT. 
           console.log('Switch is OFF');
           //Remove product from cart for the amount given. 
-          removeUniqueProductFromCart(0,variant_id)
+          removeUniqueProductFromCart(0)
 
           console.log("log after remove product")
 
           // Call the function to initiate the delay and page reload
-          //reloadPageAfterDelay();
+          reloadPageAfterDelay();
+
         }
       });
       infoButton.addEventListener('click', function () {
