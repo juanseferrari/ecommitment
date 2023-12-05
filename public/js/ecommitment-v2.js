@@ -668,7 +668,14 @@
   } else {
     console.log("start path")
 
+    getProductData(store_id).then((product_data) => {
+      console.log("product_data")
+      console.log(product_data)
+      console.log("product_data")
+      window.localStorage.setItem('Ecommitment-product_id', product_data.product_id);
+      window.localStorage.setItem('Ecommitment-variant_id', product_data.variant_id);
 
+    });
 
 
   }

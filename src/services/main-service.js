@@ -35,6 +35,7 @@ const mainService = {
         return newUserData
     },
     async createProduct(store_id, access_token) {
+        console.log("createProduct")
         //Funcion reusable para crear el producto de Bono Ambiental en la tienda del usuario. 
         let response_object
         let json_to_tn = {
@@ -113,6 +114,73 @@ const mainService = {
                 "error": {
                     "type": "UNABLE_TO_CREATE_PRODUCT",
                     "message": "It was not possible to create the ecomm product"
+                }
+            }
+
+        }
+
+        console.log("response_object")
+        console.log(response_object)
+        console.log("response_object")
+
+        return response_object
+
+    },
+    async addScript(store_id, access_token) {
+        console.log("addScript")
+
+        let response_object
+        let json_to_tn = {
+            "event": "onfirstinteraction",
+            "src": "https://juanseferrari.github.io/ecommitment/public/js/ecommitment-v2.js",
+            "where": "checkout"
+    }
+        console.log("json_to_tn")
+        console.log(json_to_tn)
+        console.log("json_to_tn")
+
+        url = "https://api.tiendanube.com/v1/" + store_id + "/scripts"
+
+        var POSTrequestOptions = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authentication": "bearer" + access_token,
+                "User-Agent": "Ecommitment"
+            },
+            body: JSON.stringify(json_to_tn),
+            redirect: 'follow'
+        };
+
+
+        try {
+            var tn_response = await fetch(url, POSTrequestOptions)
+            let tn_response_json = await tn_response.json();
+
+            console.log("tn_response_json")
+            console.log(tn_response_json)
+            console.log("tn_response_json")
+
+            console.log("tn_response")
+            console.log(tn_response)
+            console.log("tn_response")
+
+            if (tn_response.status === 201) {
+                // Process the data when the status code is 200
+                response_object = {
+                    "status": "success",
+                    "status_code": tn_response.status
+
+                }
+            } else {
+                response_object = tn_response
+            }
+
+        } catch (error) {
+            response_object = {
+                "error": {
+                    "type": "UNABLE_TO_CONFIGURE_SCRIPT",
+                    "message": "It was not possible to configure the ecommitment script."
                 }
             }
 
