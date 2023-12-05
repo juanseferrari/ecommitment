@@ -380,6 +380,10 @@
       data.append('variant_id', variant_id); //variant_id
       data.append('quantity', quantity); //quantity
 
+      console.log("data")
+      console.log(data)
+      console.log("data")
+
       fetch('/comprar/', {
         method: 'POST',
         body: data,
@@ -390,6 +394,10 @@
         .then(response => {
           if (response.ok) {
             console.log('success');
+            console.log("response")
+            console.log(response)
+            console.log("response")
+
             reloadPageAfterDelay()
           } else {
             console.log('error');
