@@ -601,10 +601,10 @@
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
            console.log("NO TIENE ADDRESS")
-           message = "No hay emisiones en este pedido. "
+           message = "¡Transformá tu envío en carbono neutral!"
       } else {
            console.log("TIENE ADDRESS")
-           message = "Tiene emisiones, texto variable."
+           message = "¡Transformá tu envío en carbono neutral!"
       }
 
       if(bono_exists){
