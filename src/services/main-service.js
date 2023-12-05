@@ -81,13 +81,16 @@ const mainService = {
 
 
         try {
-            var tn_response = await fetch(user_data['webhook_url'], POSTrequestOptions)
+            var tn_response = await fetch(url, POSTrequestOptions)
             let tn_response_json = await tn_response.json();
 
             console.log("tn_response_json")
             console.log(tn_response_json)
             console.log("tn_response_json")
 
+            console.log("tn_response")
+            console.log(tn_response)
+            console.log("tn_response")
 
             if (tn_response.status === 201) {
                 // Process the data when the status code is 200
@@ -115,6 +118,9 @@ const mainService = {
 
         }
 
+        console.log("response_object")
+        console.log(response_object)
+        console.log("response_object")
 
         return response_object
 

@@ -150,14 +150,13 @@ const mainController = {
       //CREATE PRODUCT
       try {
         let product_response = await mainService.createProduct(store_id,access_token)
-        let product_response_json = await product_response.json()
 
-        console.log("product_response_json")
-        console.log(product_response_json)
-        console.log("product_response_json")
-        if(product_response_json.status == "success"){
-          product_id = product_response_json.product_id
-          variant_id = product_response_json.variant_id
+        console.log("product_response")
+        console.log(product_response)
+        console.log("product_response")
+        if(product_response.status == "success"){
+          product_id = product_response.product_id
+          variant_id = product_response.variant_id
         }
 
       } catch (error) {
