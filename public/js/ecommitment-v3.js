@@ -513,7 +513,7 @@
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
            console.log("NO TIENE ADDRESS")
-           message = "¡Tu envío no tiene emisiones, pero transformá tu envío en carbono neutral!"
+           message = "¡Transformá tu envío en carbono neutral!"
            qty = 1
       } else {
            console.log("TIENE ADDRESS")

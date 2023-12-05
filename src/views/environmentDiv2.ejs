@@ -23,7 +23,7 @@
       display: flex;
       justify-content: space-between;
     }
-    .ecomm-midtext-right {
+    .ecomm-midtext-right, .ecomm-midtext-left {
       display: flex;
       align-items: center;
     }
@@ -233,29 +233,37 @@
         <div class="modal" id="ecomm-infoModal">
           <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <p>This is the information you want to display in the modal.</p>
+            <div class="ecomm-modal-container">
+              <div class="ecomm-midtext-left">
+                <div>
+                  <p>🚚 Distancia envío: 300km</p>
+                  <p>💨 CO2 emitidos: 14 ppm</p>
+                  <p>💵 Costo Bono: $10</p>
+                  <p>💨 Cant bonos: 8</p>
+                </div>
+              </div>
+              <div class="ecomm-midtext-right">
+                <h1 id="total-amount">Total: $ 80</h1>
+              </div>
+        
+            </div>
           </div>
         </div>
       </div>
       <!-- Description -->
     </div>
     <div class="ecomm-description-container">
-      <p>
-        <span>Compra con impacto2:</span> Convierte tu compra en un compromiso ecológico adicional.
-      </p>
+      <div class="ecomm-midtext-container">
+        <div class="ecomm-midtext-left">
+          <p><span>¡Transformá tu envío en carbono neutral!</span></p>
+        </div>
+        <div class="ecomm-midtext-right">
+          <h1 id="total-amount">Total: $ 80</h1>
+        </div>
+  
+      </div>
     </div>
-    <div class="ecomm-midtext-container">
-      <div class="ecomm-midtext-left">
-        <p>🚚 Distancia envío: 300km</p>
-        <p>💨 CO2 emitidos: 14 ppm</p>
-        <p>💵 Costo Bono: $10</p>
-        <p>💨 Cant bonos: 8</p>
-      </div>
-      <div class="ecomm-midtext-right">
-        <h1 id="total-amount">Total: $ 80</h1>
-      </div>
 
-    </div>
     <div class="ecomm-bottom-container">
       <div class="button-container">
         <button class="select-button" data-value="0">0x</button>

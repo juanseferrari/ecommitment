@@ -21,7 +21,6 @@
 
 
   // Your JavaScript
-  let switchCheckbox = document.getElementById('ecomm-mainSwitch');
   let infoButton = document.getElementById('ecomm-infoButton');
   let infoClose = document.getElementById('ecomm-infoClose');
   let buttons = document.querySelectorAll('.select-button');
@@ -80,28 +79,34 @@
         <div class="modal" id="ecomm-infoModal">
           <div class="modal-content">
             <span class="close-btn" id="ecomm-infoClose">&times;</span>
-            <p>This is the information you want to display in the modal.</p>
+            <div class="ecomm-modal-container">
+            <div class="ecomm-midtext-left">
+              <div>
+                <p>🚚 Distancia envío: ${distance} km</p>
+                <p>💨 CO2 emitidos: ${co2} ppm</p>
+                <p>💨 Cant bonos: ${environmentAmount} ppm</p>
+                <p>💵 Costo Bono: $10</p>
+              </div>
+            </div>
+            <div class="ecomm-midtext-right">
+              <h1 id="ecomm-total-amount">Total: $ ${environmentAmount * 10 * active_quantity}</h1>
+            </div>
+          </div>
           </div>
         </div>
       </div>
       <!-- Description -->
     </div>
     <div class="ecomm-description-container">
-      <p>
-        <span>Compra con impacto2:</span> Convierte tu compra en un compromiso ecológico adicional. ${text}
-      </p>
-    </div>
-    <div class="ecomm-midtext-container">
-      <div class="ecomm-midtext-left">
-        <p>🚚 Distancia envío: ${distance} km</p>
-        <p>💨 CO2 emitidos: ${co2} ppm</p>
-        <p>💨 Cant bonos: ${environmentAmount} ppm</p>
-        <p>💵 Costo Bono: $10</p>
-      </div>
-      <div class="ecomm-midtext-right">
-        <h1 id="ecomm-total-amount">Total: $ ${environmentAmount * 10 * active_quantity}</h1>
-      </div>
+      <div class="ecomm-midtext-container">
+        <div class="ecomm-midtext-left">
+          <p><span>${text}</span></p>
+        </div>
+        <div class="ecomm-midtext-right">
+          <h1 id="total-amount">Total: $ ${environmentAmount * 10 * active_quantity}</h1>
+        </div>
 
+      </div>
     </div>
     <div class="ecomm-bottom-container">
       <div class="button-container">
@@ -147,7 +152,7 @@
       display: flex;
       justify-content: space-between;
     }
-    .ecomm-midtext-right {
+    .ecomm-midtext-right, .ecomm-midtext-left {
       display: flex;
       align-items: center;
     }
@@ -324,6 +329,7 @@
   border: 1px solid #ccc;
   background-color: #fff;
   border-radius: 16px;
+  color: black;
 }
 
 .select-button.active {
@@ -351,7 +357,6 @@
 
 
     document.head.appendChild(style);
-    switchCheckbox = document.getElementById('ecomm-mainSwitch');
     infoButton = document.getElementById('ecomm-infoButton');
     infoClose = document.getElementById('ecomm-infoClose');
     buttons = document.querySelectorAll('.select-button');
