@@ -89,7 +89,7 @@
               </div>
             </div>
             <div class="ecomm-midtext-right">
-              <h1 id="ecomm-total-amount">Total: $ ${environmentAmount * 10 * active_quantity}</h1>
+              <h2 class="ecomm-total-amount" id="ecomm-total-amount">Total: $ ${environmentAmount * 10 * active_quantity}</h2>
             </div>
           </div>
           </div>
@@ -103,7 +103,7 @@
           <p><span>${text}</span></p>
         </div>
         <div class="ecomm-midtext-right">
-          <h1 id="total-amount">Total: $ ${environmentAmount * 10 * active_quantity}</h1>
+          <h1 class="ecomm-total-amount" id="total-amount">$ ${environmentAmount * 10 * active_quantity}</h1>
         </div>
 
       </div>
@@ -155,6 +155,9 @@
     .ecomm-midtext-right, .ecomm-midtext-left {
       display: flex;
       align-items: center;
+    }
+    .ecomm-total-amount {
+      white-space: nowrap;
     }
   
     .ecomm-switch-logo {
@@ -582,6 +585,7 @@
 
       let message = ""
       let qty = calculation_response.quantity
+      console.log("qty: "+ qty)
 
       //Validar si tiene el producto en el carrito. Si no lo tiene, crearlo y refrescar. Si lo tiene, mostrar el div. 
       let bono_exists = false
@@ -597,6 +601,12 @@
       console.log(bono_item)
       console.log("bono_item")
 
+      if(qty === 0){
+        console.log("cantidad de emisiones: "+ qty)
+        //Pasar cantidad a 1? 
+        qty = 2
+      }
+
       //Validar el address
       if(!LS.cart.shippingAddress.address){
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
@@ -610,9 +620,6 @@
       if(bono_exists){
         console.log("bono_exists")
         let new_quantity = bono_item.quantity / qty
-        console.log("new_quantity")
-        console.log(new_quantity)
-        console.log("new_quantity")
         showEnvironmentDiv(qty,calculation_response.distance, calculation_response.co2_emitted, message, new_quantity)
       } else {
         showEnvironmentDiv(qty, calculation_response.distance, calculation_response.co2_emitted, message, 0)
