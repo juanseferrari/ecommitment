@@ -54,7 +54,6 @@ const mainService = {
                 "es": "ecomm-bono-ambiental",
                 "pt": "ecomm-bono-ambiental"
             },
-            "published": false,
             "requires_shipping": false,
             "variants": [
                 {

@@ -162,11 +162,7 @@
     .ecomm-total-amount {
       white-space: nowrap;
     }
-  
-    .ecomm-switch-logo {
-      height: 34px;
-    }
-  
+    
     .ecomm-logo {
       height: 34px;
     }
@@ -180,9 +176,9 @@
   
   
     .ecomm-switch-logo {
+      height: 34px;
       display: flex;
       align-items: center;
-      padding-left: 10px;
     }
   
     .switch-amount {
