@@ -166,7 +166,7 @@ const mainController = {
       }
 
       //SAVE INTO DB
-
+      //TODO migrate into a better DB. 
       let new_user_data = {
         access_token,
         store_id,

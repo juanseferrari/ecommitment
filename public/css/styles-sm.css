@@ -48,3 +48,26 @@
 .login-button-logo {
     max-height: 4vh;
 }
+
+
+
+nav {
+    margin-bottom: 30px;
+}
+
+.main-logo {
+    width: 350px;
+}
+
+.image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.main-image {
+    max-width: 500px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+
+}
