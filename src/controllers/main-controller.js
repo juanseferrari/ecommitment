@@ -186,6 +186,16 @@ const mainController = {
 
     } /** Fin del else error */
   },
+  configuration: async (req,res) => {
+    let user_data = {
+      "store_id": "1234",
+      "store_name": "Demo Testing",
+      "product_id": "3456",
+      "variant_id": "5678"
+    }
+
+    res.render("configuration", {user_data})
+  }
 };
 
 module.exports = mainController;
