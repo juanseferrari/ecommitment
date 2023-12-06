@@ -135,7 +135,6 @@
       margin: 20px 0;
       border: 1px solid rgba(67,67,67,0.3);
       padding: 10px;
-      background-color: rgba(255, 255, 255, 1);
       display: block;
     }
   
@@ -296,6 +295,7 @@
       padding: 20px;
       background-color: #fff;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      color: black;
     }
   
     .modal.active {
