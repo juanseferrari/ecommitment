@@ -424,15 +424,15 @@
   display: flex;
   justify-content: end;
   align-items: center;
-  max-width: 200px;
-  padding-left: 70%;
 }
 .modal-footer img {
-  width: 55%;
+  width: 200px;
   margin-left: 5px;
 }
 .modal-footer p {
-  width: 40%;
+  width: 100px;
+  display: flex;
+  justify-content: end;
 }
 
 
