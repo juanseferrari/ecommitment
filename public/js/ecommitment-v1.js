@@ -98,8 +98,7 @@
           <h1 class="modal-main-title">Parque eólico Chubut</h1>
           <div class="modal-main-container">
             <div class="modal-midtext-left">
-              <!-- <img src="https://ecommitment-634117e74352.herokuapp.com/images/eolico1.png" alt="">-->
-              <img src="/images/eolico1.png" alt="">
+              <img src="https://ecommitment-634117e74352.herokuapp.com/images/eolico1.png" alt="">
             </div>
 
               <div class="modal-midtext-right">
