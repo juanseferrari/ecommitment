@@ -108,6 +108,10 @@
                 <p>El proyecto consiste en la instalación de una central eólica llamada Greenfield que generará reducciones de emisiones de gases de efecto invernadero al desplazar la electricidad que sería producida por centrales eléctricas a base de combustibles fósiles.</p>
               </div>
           </div>
+          <div class="modal-footer">
+            <p>Powered by </p>
+            <img src="https://ecommitment-634117e74352.herokuapp.com/images/logo_transparente_on.png" alt="">
+          </div>
         </div>
       </div>
     </div>
@@ -363,6 +367,20 @@
   font-size: 20px;
 }
 
+.modal-footer {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  max-width: 200px;
+  padding-left: 70%;
+}
+.modal-footer img {
+  width: 55%;
+  margin-left: 5px;
+}
+.modal-footer p {
+  width: 40%;
+}
 
            `;
 
