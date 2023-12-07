@@ -717,7 +717,7 @@
 
           const selectedValue = this.getAttribute('data-value');
           console.log(`Selected value: ${selectedValue}`);
-          total_amount.textContent = "Total: $" + (10 * selectedValue * qty)
+          total_amount.textContent = "$ " + (10 * selectedValue * qty)
 
           updateUniqueProductFromCart(product_id, variant_id, (qty * selectedValue))
         });
