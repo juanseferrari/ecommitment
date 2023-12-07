@@ -257,8 +257,22 @@
     
     .info-container {
       position: relative;
+      display: flex;
+      align-items: center;
+    }
+    /** 
+    .info-icon {
+      font-size: 24px;
+      color: blue;
+      cursor: pointer;
     }
   
+    .info-icon-svg {
+      height: 34px;
+      width: 24px;
+      fill: #2196F3;
+    }
+    */
     .info-icon {
       color: grey;
       cursor: pointer;
@@ -267,8 +281,8 @@
     }
   
     .info-icon-svg {
-      height: 60%;
-      width: 60%;
+      height: 100%;
+      width: 100%;
       fill: grey;
       border: 2px grey solid;
       border-radius: 50%;
