@@ -373,6 +373,13 @@
     padding: 10px 15px;
    
   }
+
+  .modal-main-container {
+    display: block;
+  }
+  .modal-midtext-left, .modal-midtext-right  {
+    width: 100%
+  }
 }
 
 
