@@ -100,6 +100,9 @@
       <div class="ecomm-midtext-container">
         <div class="ecomm-midtext-left">
           <p><span>${text}</span></p>
+          <div class="info-icon-2" onclick="openModal()">
+            <svg class="info-icon-svg-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"><path d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32H96c17.7 0 32 14.3 32 32V448h32c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H64V256H32c-17.7 0-32-14.3-32-32z"/></svg>
+          </div>
         </div>
         <div class="ecomm-midtext-right">
           <h1 class="ecomm-total-amount" id="total-amount">$ ${environmentAmount * 10 * active_quantity}</h1>
@@ -260,19 +263,6 @@
       display: flex;
       align-items: center;
     }
-    /** 
-    .info-icon {
-      font-size: 24px;
-      color: blue;
-      cursor: pointer;
-    }
-  
-    .info-icon-svg {
-      height: 34px;
-      width: 24px;
-      fill: #2196F3;
-    }
-    */
     .info-icon {
       color: grey;
       cursor: pointer;
@@ -281,12 +271,29 @@
     }
   
     .info-icon-svg {
-      height: 100%;
-      width: 100%;
+      height: 60%;
+      width: 60%;
       fill: grey;
       border: 2px grey solid;
       border-radius: 50%;
       padding: 4px;
+    }
+  
+    .info-icon-2 {
+      color: grey;
+      cursor: pointer;
+      height: 20px;
+      width: 20px;
+      padding-left: 5px;
+    }
+    .info-icon-svg-2 {
+      fill: grey;
+      cursor: pointer;
+      height: 10px;
+      width: 10px;
+      border: 2px grey solid;
+      border-radius: 50%;
+      padding: 3px;
     }
   
     .modal {
