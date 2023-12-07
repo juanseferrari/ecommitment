@@ -1,5 +1,5 @@
 (function () {
-  
+
   //GLOBALS
   const store_id = LS.store.id
   const product_id = window.localStorage.getItem('Ecommitment-product_id');
@@ -77,22 +77,28 @@
 
         <div class="modal" id="ecomm-infoModal">
           <div class="modal-content">
-            <span class="close-btn" id="ecomm-infoClose">&times;</span>
+            <span class="close-btn" id="ecomm-infoClose" >&times;</span>
             <div class="ecomm-modal-container">
-            <div class="ecomm-midtext-left">
-              <div>
-                <p>🚚 Distancia envío: ${distance} km</p>
-                <p>💨 CO2 emitidos: ${co2} ppm</p>
-                <p>💨 Cant bonos: ${environmentAmount} ppm</p>
-                <p>💵 Costo Bono: $10</p>
+              <h1 class="modal-main-title">Parque eólico Chubut</h1>
+              <div class="modal-main-container">
+                <div class="modal-midtext-left">
+                  <!-- <img src="https://ecommitment-634117e74352.herokuapp.com/images/eolico1.png" alt="">-->
+                  <img src="/images/eolico1.png" alt="">
+                </div>
+
+                  <div class="modal-midtext-right">
+                    <p>Escalante, Provincia de Chubut, en el sur de Argentina.</p>
+                    <a target="_blank"  href="https://www.google.com.ar/maps/place/45%C2%B040'22.7%22S+67%C2%B048'00.8%22W/@-45.6729722,-67.8008809,19z/data=!3m1!4b1!4m4!3m3!8m2!3d-45.6729722!4d-67.8002222?entry=tts">Ver más</a>
+                    <br>
+                    <p>El proyecto consiste en la instalación de una central eólica llamada Greenfield que generará reducciones de emisiones de gases de efecto invernadero al desplazar la electricidad que sería producida por centrales eléctricas a base de combustibles fósiles.</p>
+                  </div>
               </div>
             </div>
-            <div class="ecomm-midtext-right">
-              <h2 class="ecomm-total-amount" id="ecomm-total-amount">Total: $ ${environmentAmount * 10 * active_quantity}</h2>
-            </div>
-          </div>
           </div>
         </div>
+
+
+
       </div>
       <!-- Description -->
     </div>
@@ -109,11 +115,11 @@
     </div>
     <div class="ecomm-bottom-container">
       <div class="button-container">
-        <button class="select-button ${active_quantity === 0 ? 'active': ''}" data-value="0">0x</button>
-        <button class="select-button ${active_quantity === 0.5 ? 'active': ''}" data-value="0.5">0.5x</button>
-        <button class="select-button ${active_quantity === 1 ? 'active': ''}" data-value="1">1x</button>
-        <button class="select-button ${active_quantity === 2 ? 'active': ''}" data-value="2">2x</button>
-        <button class="select-button ${active_quantity === 4 ? 'active': ''}" data-value="4">4x</button>
+        <button class="select-button ${active_quantity === 0 ? 'active' : ''}" data-value="0">0x</button>
+        <button class="select-button ${active_quantity === 0.5 ? 'active' : ''}" data-value="0.5">0.5x</button>
+        <button class="select-button ${active_quantity === 1 ? 'active' : ''}" data-value="1">1x</button>
+        <button class="select-button ${active_quantity === 2 ? 'active' : ''}" data-value="2">2x</button>
+        <button class="select-button ${active_quantity === 4 ? 'active' : ''}" data-value="4">4x</button>
       </div>
 
     </div>
@@ -364,6 +370,52 @@
    
   }
 }
+
+
+
+/** MODAL CONTENT */
+
+
+.ecomm-modal-container {
+  display: block;
+}
+.modal-main-title {
+  text-align: center;
+}
+.modal-main-container {
+  display: flex;
+  width: 70vw;
+}
+.modal-midtext-left {
+  width: 50%;
+  padding: 10px;
+  position: relative;
+
+}
+
+.modal-midtext-left img {
+  max-width: 100%;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7), 0 -4px 8px rgba(0, 0, 0, 0.7);
+
+}
+
+.modal-midtext-right {
+  width: 50%;
+  padding: 10px;
+  display: block;
+  text-align: justify;
+}
+
+.modal-midtext-right p:first-child {
+  margin-top: 0;
+}
+
+.modal-midtext-right p{
+  font-size: 20px;
+}
+
+
            `;
 
     // Append the style element to the document's head
@@ -383,7 +435,7 @@
     total_amount = document.getElementById("ecomm-total-amount")
   } //End function add EnvironmentDivv2
 
-  function addProductToCart(product_id,variant_id,quantity) {
+  function addProductToCart(product_id, variant_id, quantity) {
     console.log("addProductToCart")
     if (LS.cart.items) {
       console.log("LSproduct")
@@ -428,7 +480,7 @@
   }
 
 
-  async function updateUniqueProductFromCart(pid,vid,quantity) {
+  async function updateUniqueProductFromCart(pid, vid, quantity) {
     let items_on_cart = LS.cart.items
     console.log("items_on_cart")
     console.log(items_on_cart)
@@ -480,8 +532,8 @@
           reloadPageAfterDelay()
         });
 
-    } else if (result.length === 0){
-      addProductToCart(pid,vid,quantity) 
+    } else if (result.length === 0) {
+      addProductToCart(pid, vid, quantity)
     }
 
   }
@@ -556,7 +608,7 @@
     try {
       console.log(store_id);
 
-      const response = await fetch('https://ecommitment-634117e74352.herokuapp.com/api/product-data?store_id='+store_id, {
+      const response = await fetch('https://ecommitment-634117e74352.herokuapp.com/api/product-data?store_id=' + store_id, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -585,7 +637,7 @@
   //Check pathname
   console.log(window.location.pathname)
 
-  if(!product_id && !variant_id){
+  if (!product_id && !variant_id) {
     //get info of product
     getProductData(store_id).then((product_data) => {
       console.log("product_data")
@@ -610,7 +662,7 @@
 
       let message = ""
       let qty = calculation_response.quantity
-      console.log("qty: "+ qty)
+      console.log("qty: " + qty)
 
       //Validar si tiene el producto en el carrito. Si no lo tiene, crearlo y refrescar. Si lo tiene, mostrar el div. 
       let bono_exists = false
@@ -619,33 +671,33 @@
         if (LS.cart.items[p].variant_id == window.localStorage.getItem('Ecommitment-variant_id')) {
           console.log("variant " + window.localStorage.getItem('Ecommitment-variant_id') + " existe")
           bono_exists = true
-          bono_item = LS.cart.items[p] 
+          bono_item = LS.cart.items[p]
         }
       }
       console.log("bono_item")
       console.log(bono_item)
       console.log("bono_item")
 
-      if(qty === 0){
-        console.log("cantidad de emisiones: "+ qty)
+      if (qty === 0) {
+        console.log("cantidad de emisiones: " + qty)
         //Pasar cantidad a 1? 
         qty = 2
       }
 
       //Validar el address
-      if(!LS.cart.shippingAddress.address){
+      if (!LS.cart.shippingAddress.address) {
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
-           console.log("NO TIENE ADDRESS")
-           message = "¡Transformá tu envío en carbono neutral!"
+        console.log("NO TIENE ADDRESS")
+        message = "¡Transformá tu envío en carbono neutral!"
       } else {
-           console.log("TIENE ADDRESS")
-           message = "¡Transformá tu envío en carbono neutral!"
+        console.log("TIENE ADDRESS")
+        message = "¡Transformá tu envío en carbono neutral!"
       }
 
-      if(bono_exists){
+      if (bono_exists) {
         console.log("bono_exists")
         let new_quantity = bono_item.quantity / qty
-        showEnvironmentDiv(qty,calculation_response.distance, calculation_response.co2_emitted, message, new_quantity)
+        showEnvironmentDiv(qty, calculation_response.distance, calculation_response.co2_emitted, message, new_quantity)
       } else {
         showEnvironmentDiv(qty, calculation_response.distance, calculation_response.co2_emitted, message, 0)
         /**  
@@ -658,20 +710,20 @@
         */
       }
 
-        buttons.forEach(button => {
-          button.addEventListener('click', function (e) {
-            e.preventDefault()
-            buttons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-      
-            const selectedValue = this.getAttribute('data-value');
-            console.log(`Selected value: ${selectedValue}`);
-            total_amount.textContent = "Total: $" + (10 * selectedValue * qty)
+      buttons.forEach(button => {
+        button.addEventListener('click', function (e) {
+          e.preventDefault()
+          buttons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
 
-            updateUniqueProductFromCart(product_id, variant_id, (qty * selectedValue))
-          });
+          const selectedValue = this.getAttribute('data-value');
+          console.log(`Selected value: ${selectedValue}`);
+          total_amount.textContent = "Total: $" + (10 * selectedValue * qty)
+
+          updateUniqueProductFromCart(product_id, variant_id, (qty * selectedValue))
         });
-      
+      });
+
 
       infoButton.addEventListener('click', function () {
         openModal()

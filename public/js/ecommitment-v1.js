@@ -92,11 +92,27 @@
       </div>
 
       <div class="modal" id="ecomm-infoModal">
-        <div class="modal-content">
-          <span class="close-btn" id="ecomm-infoClose">&times;</span>
-          <p>🚚 Distancia envío: ${distance} km</p>
-          <p>💨 CO2 emitidos: ${co2} ppm</p>        </div>
+      <div class="modal-content">
+        <span class="close-btn" id="ecomm-infoClose">&times;</span>
+        <div class="ecomm-modal-container">
+          <h1 class="modal-main-title">Parque eólico Chubut</h1>
+          <div class="modal-main-container">
+            <div class="modal-midtext-left">
+              <!-- <img src="https://ecommitment-634117e74352.herokuapp.com/images/eolico1.png" alt="">-->
+              <img src="/images/eolico1.png" alt="">
+            </div>
+
+              <div class="modal-midtext-right">
+                <p>Escalante, Provincia de Chubut, en el sur de Argentina.</p>
+                <a target="_blank"  href="https://www.google.com.ar/maps/place/45%C2%B040'22.7%22S+67%C2%B048'00.8%22W/@-45.6729722,-67.8008809,19z/data=!3m1!4b1!4m4!3m3!8m2!3d-45.6729722!4d-67.8002222?entry=tts">Ver más</a>
+                <br>
+                <p>El proyecto consiste en la instalación de una central eólica llamada Greenfield que generará reducciones de emisiones de gases de efecto invernadero al desplazar la electricidad que sería producida por centrales eléctricas a base de combustibles fósiles.</p>
+              </div>
+          </div>
+        </div>
       </div>
+    </div>
+
     </div>
         `;
 
@@ -304,6 +320,51 @@
       font-size: 20px;
       cursor: pointer;
     }
+
+
+    /** MODAL CONTENT */
+
+
+.ecomm-modal-container {
+  display: block;
+}
+.modal-main-title {
+  text-align: center;
+}
+.modal-main-container {
+  display: flex;
+  width: 70vw;
+}
+.modal-midtext-left {
+  width: 50%;
+  padding: 10px;
+  position: relative;
+
+}
+
+.modal-midtext-left img {
+  max-width: 100%;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7), 0 -4px 8px rgba(0, 0, 0, 0.7);
+
+}
+
+.modal-midtext-right {
+  width: 50%;
+  padding: 10px;
+  display: block;
+  text-align: justify;
+}
+
+.modal-midtext-right p:first-child {
+  margin-top: 0;
+}
+
+.modal-midtext-right p{
+  font-size: 20px;
+}
+
+
            `;
 
     var reviewDiv4 = document.querySelector('.panel.panel-with-header');
@@ -317,7 +378,7 @@
 
   } //End function add EnvironmentDivv2
 
-  async function addProductToCart(product_id,variant_id,quantity) {
+  async function addProductToCart(product_id, variant_id, quantity) {
     console.log("addProductToCart")
     if (LS.cart.items) {
       console.log("LSproduct")
@@ -350,7 +411,7 @@
     }
   }
 
-  async function removeUniqueProductFromCart(quantity,vid) {
+  async function removeUniqueProductFromCart(quantity, vid) {
     let items_on_cart = LS.cart.items
     console.log("items_on_cart")
     console.log(items_on_cart)
@@ -481,7 +542,7 @@
     try {
       console.log(store_id);
 
-      const response = await fetch('https://ecommitment-634117e74352.herokuapp.com/api/product-data?store_id='+store_id, {
+      const response = await fetch('https://ecommitment-634117e74352.herokuapp.com/api/product-data?store_id=' + store_id, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -510,7 +571,7 @@
   //Check pathname
   console.log(window.location.pathname)
 
-  if(!product_id && !variant_id){
+  if (!product_id && !variant_id) {
     //get info of product
     getProductData(store_id).then((product_data) => {
       console.log("product_data")
@@ -539,16 +600,16 @@
       let qty = calculation_response.quantity
 
       //Validar el address
-      if(!LS.cart.shippingAddress.address){
+      if (!LS.cart.shippingAddress.address) {
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
-           console.log("NO TIENE ADDRESS")
-           message = "¡Transformá tu envío en carbono neutral!"
-           qty = 1
+        console.log("NO TIENE ADDRESS")
+        message = "¡Transformá tu envío en carbono neutral!"
+        qty = 1
       } else {
-           console.log("TIENE ADDRESS")
-           message = "¡Transformá tu envío en carbono neutral!"
+        console.log("TIENE ADDRESS")
+        message = "¡Transformá tu envío en carbono neutral!"
       }
-      showEnvironmentDiv(qty,calculation_response.distance, calculation_response.co2_emitted, message )
+      showEnvironmentDiv(qty, calculation_response.distance, calculation_response.co2_emitted, message)
 
 
       //PENDIENTE: SI NO TIENE EMISIONES, QUE EL CHECK ESTE VERDE.
@@ -565,7 +626,7 @@
         if (switchCheckbox.checked) {
           console.log('Switch is ON');
           //Add product to cart for the amount given. 
-          addProductToCart(product_id,variant_id,qty)
+          addProductToCart(product_id, variant_id, qty)
 
           // Call the function to initiate the delay and page reload
           reloadPageAfterDelay();
@@ -574,7 +635,7 @@
           //REMOVE PRODUCT. 
           console.log('Switch is OFF');
           //Remove product from cart for the amount given. 
-          removeUniqueProductFromCart(0,variant_id)
+          removeUniqueProductFromCart(0, variant_id)
 
           console.log("log after remove product")
 

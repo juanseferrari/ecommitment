@@ -241,6 +241,49 @@
   background-color: #34a77c; /* Change to your desired active color */
   color: #fff; /* Change to your desired text color when active */
 }
+
+
+/** MODAL CONTENT */
+
+
+.ecomm-modal-container {
+  display: block;
+}
+.modal-main-title {
+  text-align: center;
+}
+.modal-main-container {
+  display: flex;
+  width: 70vw;
+}
+.modal-midtext-left {
+  width: 50%;
+  padding: 10px;
+  position: relative;
+
+}
+
+.modal-midtext-left img {
+  max-width: 100%;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7), 0 -4px 8px rgba(0, 0, 0, 0.7);
+
+}
+
+.modal-midtext-right {
+  width: 50%;
+  padding: 10px;
+  display: block;
+  text-align: justify;
+}
+
+.modal-midtext-right p:first-child {
+  margin-top: 0;
+}
+
+.modal-midtext-right p{
+  font-size: 20px;
+}
     
 </style>
 
@@ -270,20 +313,22 @@
 
         <div class="modal" id="ecomm-infoModal">
           <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <span class="close-btn" id="ecomm-infoClose" onclick="closeModal()">&times;</span>
             <div class="ecomm-modal-container">
-              <div class="ecomm-midtext-left">
-                <div>
-                  <p>🚚 Distancia envío: 300km</p>
-                  <p>💨 CO2 emitidos: 14 ppm</p>
-                  <p>💵 Costo Bono: $10</p>
-                  <p>💨 Cant bonos: 8</p>
+              <h1 class="modal-main-title">Parque eólico Chubut</h1>
+              <div class="modal-main-container">
+                <div class="modal-midtext-left">
+                  <!-- <img src="https://ecommitment-634117e74352.herokuapp.com/images/eolico1.png" alt="">-->
+                  <img src="/images/eolico1.png" alt="">
                 </div>
+
+                  <div class="modal-midtext-right">
+                    <p>Escalante, Provincia de Chubut, en el sur de Argentina.</p>
+                    <a target="_blank"  href="https://www.google.com.ar/maps/place/45%C2%B040'22.7%22S+67%C2%B048'00.8%22W/@-45.6729722,-67.8008809,19z/data=!3m1!4b1!4m4!3m3!8m2!3d-45.6729722!4d-67.8002222?entry=tts">Ver más</a>
+                    <br>
+                    <p>El proyecto consiste en la instalación de una central eólica llamada Greenfield que generará reducciones de emisiones de gases de efecto invernadero al desplazar la electricidad que sería producida por centrales eléctricas a base de combustibles fósiles.</p>
+                  </div>
               </div>
-              <div class="ecomm-midtext-right">
-                <h1 id="total-amount">Total: $ 80</h1>
-              </div>
-        
             </div>
           </div>
         </div>
