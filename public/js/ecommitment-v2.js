@@ -137,6 +137,41 @@
 
     // Set the CSS rules as text content
     style.textContent = `
+
+    @media only screen and (max-width: 767px) {
+      /* Your mobile-specific styles go here */
+      .select-button {
+        padding: 10px 15px;
+       
+      }
+    
+      .modal-midtext-left  {
+        width: 100%;
+      }
+      .modal-midtext-right {
+        width: 100%;
+      }
+    
+      .modal-content {
+        max-height: 80vh; /* Set the maximum height, adjust as needed */
+        max-width: 90vh;
+        overflow-y: auto; /* Enable vertical scroll if content exceeds the height */
+      }
+    
+      .modal-main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center content vertically */
+        text-align: center; /* Center text content */
+        width: 100%;
+      }
+    
+      .modal-midtext-left img {
+        max-width: 100%; /* Make sure images are responsive within the modal */
+      }
+    }
+
+    
     .ecomm-container {
       margin: 20px 0;
       border: 1px solid rgba(67,67,67,0.3);
@@ -372,38 +407,7 @@
 }
 
 
-@media only screen and (max-width: 767px) {
-  /* Your mobile-specific styles go here */
-  .select-button {
-    padding: 10px 15px;
-   
-  }
 
-  .modal-midtext-left  {
-    width: 100%;
-  }
-  .modal-midtext-right {
-    width: 100%;
-  }
-
-  .modal-content {
-    max-height: 80vh; /* Set the maximum height, adjust as needed */
-    max-width: 90vh;
-    overflow-y: auto; /* Enable vertical scroll if content exceeds the height */
-  }
-
-  .modal-main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center content vertically */
-    text-align: center; /* Center text content */
-    width: 100%;
-  }
-
-  .modal-midtext-left img {
-    max-width: 100%; /* Make sure images are responsive within the modal */
-  }
-}
 
 
 
