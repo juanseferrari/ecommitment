@@ -394,6 +394,7 @@
 
 .modal-midtext-right p{
   font-size: 20px;
+  font-weight: lighter;
 }
 
 .modal-footer {
