@@ -87,7 +87,7 @@
 
                   <div class="modal-midtext-right">
                     <p>Escalante, Provincia de Chubut, en el sur de Argentina.</p>
-                    <a target="_blank"  href="https://www.google.com.ar/maps/place/45%C2%B040'22.7%22S+67%C2%B048'00.8%22W/@-45.6729722,-67.8008809,19z/data=!3m1!4b1!4m4!3m3!8m2!3d-45.6729722!4d-67.8002222?entry=tts">Ver más</a>
+                    <a target="_blank" class="modal-link"  href="https://www.google.com.ar/maps/place/45%C2%B040'22.7%22S+67%C2%B048'00.8%22W/@-45.6729722,-67.8008809,19z/data=!3m1!4b1!4m4!3m3!8m2!3d-45.6729722!4d-67.8002222?entry=tts">Ver más</a>
                     <br>
                     <p>El proyecto consiste en la instalación de una central eólica llamada Greenfield que generará reducciones de emisiones de gases de efecto invernadero al desplazar la electricidad que sería producida por centrales eléctricas a base de combustibles fósiles.</p>
                   </div>
@@ -376,17 +376,22 @@
   /* Your mobile-specific styles go here */
   .select-button {
     padding: 10px 15px;
+   
   }
 
   .modal-main-container {
     display: block;
   }
-  .modal-midtext-left, .modal-midtext-right  {
-    width: 100%
+  .modal-midtext-left  {
+    width: 100%;
+  }
+  .modal-midtext-right {
+    width: 100%;
   }
 
   .modal-content {
     max-height: 80vh; /* Set the maximum height, adjust as needed */
+    max-width: 90vh;
     overflow-y: auto; /* Enable vertical scroll if content exceeds the height */
   }
 

@@ -390,17 +390,22 @@
   /* Your mobile-specific styles go here */
   .select-button {
     padding: 10px 15px;
+   
   }
 
   .modal-main-container {
     display: block;
   }
-  .modal-midtext-left, .modal-midtext-right  {
-    width: 100%
+  .modal-midtext-left  {
+    width: 100%;
+  }
+  .modal-midtext-right {
+    width: 100%;
   }
 
   .modal-content {
     max-height: 80vh; /* Set the maximum height, adjust as needed */
+    max-width: 90vh;
     overflow-y: auto; /* Enable vertical scroll if content exceeds the height */
   }
 
