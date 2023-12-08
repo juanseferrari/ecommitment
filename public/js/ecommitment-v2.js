@@ -332,6 +332,10 @@
       transition: all 1s ease;
   
     }
+    .modal-link {
+      display: flex;
+      justify-content: center;
+    }
   
     .close-btn {
       position: absolute;
@@ -367,11 +371,11 @@
   color: #fff; /* Change to your desired text color when active */
 }
 
+
 @media only screen and (max-width: 767px) {
   /* Your mobile-specific styles go here */
   .select-button {
     padding: 10px 15px;
-   
   }
 
   .modal-main-container {
@@ -379,6 +383,22 @@
   }
   .modal-midtext-left, .modal-midtext-right  {
     width: 100%
+  }
+
+  .modal-content {
+    max-height: 80vh; /* Set the maximum height, adjust as needed */
+    overflow-y: auto; /* Enable vertical scroll if content exceeds the height */
+  }
+
+  .modal-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content vertically */
+    text-align: center; /* Center text content */
+  }
+
+  .modal-midtext-left img {
+    max-width: 100%; /* Make sure images are responsive within the modal */
   }
 }
 
