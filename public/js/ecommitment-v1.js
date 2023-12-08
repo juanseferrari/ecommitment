@@ -129,8 +129,7 @@
     @media only screen and (max-width: 767px) {
       /* Your mobile-specific styles go here */
       .select-button {
-        padding: 10px 15px;
-       
+        padding: 10px 15px!important;
       }
     
       .modal-midtext-left, .modal-midtext-right  {
