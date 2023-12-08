@@ -385,7 +385,6 @@
   display: flex;
   justify-content: center;
 }
-
 @media only screen and (max-width: 767px) {
   /* Your mobile-specific styles go here */
   .select-button {
@@ -393,9 +392,6 @@
    
   }
 
-  .modal-main-container {
-    display: block;
-  }
   .modal-midtext-left  {
     width: 100%;
   }
@@ -414,6 +410,7 @@
     flex-direction: column;
     align-items: center; /* Center content vertically */
     text-align: center; /* Center text content */
+    width: 100%;
   }
 
   .modal-midtext-left img {
