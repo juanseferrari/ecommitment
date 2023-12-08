@@ -145,11 +145,8 @@
        
       }
     
-      .modal-midtext-left  {
-        width: 100%;
-      }
-      .modal-midtext-right {
-        width: 100%;
+      .modal-midtext-left, .modal-midtext-right  {
+        width: 100%!important;
       }
     
       .modal-content {
@@ -163,7 +160,7 @@
         flex-direction: column;
         align-items: center; /* Center content vertically */
         text-align: center; /* Center text content */
-        width: 100%;
+        width: 100%!important;
       }
     
       .modal-midtext-left img {
@@ -171,7 +168,7 @@
       }
     }
 
-    
+
     .ecomm-container {
       margin: 20px 0;
       border: 1px solid rgba(67,67,67,0.3);
