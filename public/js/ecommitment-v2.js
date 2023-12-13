@@ -737,6 +737,11 @@
         //Pasar cantidad a 1? 
         qty = 2
       }
+      if(qty % 2!==0){
+        //Sumo 1 en caso que sea impar para que den bien los calculos
+        qty = qty + 1
+      }
+     
 
       //Validar el address
       if (!LS.cart.shippingAddress.address) {
