@@ -46,7 +46,7 @@
   }
 
 
-  function showEnvironmentDiv(environmentAmount, distance, co2, text) {
+  function showEnvironmentDiv(environmentAmount, text) {
 
     var newDiv = document.createElement('div');
 
@@ -538,21 +538,26 @@
   }
 
 
-  async function calculator(cart_data, store_data) {
+  async function calculator() {
     console.log("calculator");
 
+    let body_object = {
+      "ecommerceId": LS.store.id,
+      "shippingAddress": {
+          "city": LS.cart.shippingAddress.city,
+          "street": LS.cart.shippingAddress.address,
+          "number": parseInt(LS.cart.shippingAddress.number),
+          "zipcode": parseInt(LS.cart.shippingAddress.zipcode)
+      }
+  }
     try {
-      console.log(cart_data);
-      console.log(store_data);
+      console.log("body_object");
+      console.log(body_object);
+      console.log("body_object");
 
-      let body = JSON.stringify({
-        cart: cart_data,
-        store: store_data
-      });
-
-      const response = await fetch('https://ecommitment-634117e74352.herokuapp.com/api/calculator', {
+      const response = await fetch('https://us-central1-ecommitment-qa.cloudfunctions.net/calculator/calculate-bond-fraction', {
         method: 'POST',
-        body: body,
+        body: JSON.stringify(body_object),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -579,7 +584,7 @@
   async function performCalculation() {
 
     try {
-      let calculator_response = await calculator(LS.cart, LS.store);
+      let calculator_response = await calculator();
 
       return calculator_response;
     } catch (error) {
@@ -648,8 +653,14 @@
       console.log(calculation_response)
       console.log("calculation_response")
 
+      //Validar que el calculator response devuelva info, sino no mostrar el banner. 
+      //if(!calculation_response){
+      //  return true
+      //} 
+
       let message = ""
       let qty = calculation_response.quantity
+
 
       //Validar el address
       if (!LS.cart.shippingAddress.address) {
@@ -661,7 +672,7 @@
         console.log("TIENE ADDRESS")
         message = "¡Compensa el impacto ambiental de tu envío!"
       }
-      showEnvironmentDiv(qty, calculation_response.distance, calculation_response.co2_emitted, message)
+      showEnvironmentDiv(qty, message)
 
 
       //PENDIENTE: SI NO TIENE EMISIONES, QUE EL CHECK ESTE VERDE.
