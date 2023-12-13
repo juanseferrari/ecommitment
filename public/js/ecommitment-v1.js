@@ -549,7 +549,7 @@
           "number": parseInt(LS.cart.shippingAddress.number),
           "zipcode": parseInt(LS.cart.shippingAddress.zipcode)
       }
-  }
+    }
     try {
       console.log("body_object");
       console.log(body_object);

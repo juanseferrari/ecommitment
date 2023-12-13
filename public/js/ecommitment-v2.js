@@ -46,7 +46,7 @@
   }
 
 
-  function showEnvironmentDiv(environmentAmount, distance, co2, text, active_quantity) {
+  function showEnvironmentDiv(environmentAmount, text, active_quantity) {
 
     var newDiv = document.createElement('div');
 
@@ -601,21 +601,26 @@
 
   //NEW CHATGPT FUNCTION
 
-  async function calculator(cart_data, store_data) {
+  async function calculator() {
     console.log("calculator");
 
+    let body_object = {
+      "ecommerceId": LS.store.id,
+      "shippingAddress": {
+          "city": LS.cart.shippingAddress.city,
+          "street": LS.cart.shippingAddress.address,
+          "number": parseInt(LS.cart.shippingAddress.number),
+          "zipcode": parseInt(LS.cart.shippingAddress.zipcode)
+      }
+    }
     try {
-      console.log(cart_data);
-      console.log(store_data);
+      console.log("body_object");
+      console.log(body_object);
+      console.log("body_object");
 
-      let body = JSON.stringify({
-        cart: cart_data,
-        store: store_data
-      });
-
-      const response = await fetch('https://ecommitment-634117e74352.herokuapp.com/api/calculator', {
+      const response = await fetch('https://us-central1-ecommitment-qa.cloudfunctions.net/calculator/calculate-bond-fraction', {
         method: 'POST',
-        body: body,
+        body: JSON.stringify(body_object),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -642,7 +647,7 @@
   async function performCalculation() {
 
     try {
-      let calculator_response = await calculator(LS.cart, LS.store);
+      let calculator_response = await calculator();
 
       return calculator_response;
     } catch (error) {
@@ -746,9 +751,9 @@
       if (bono_exists) {
         console.log("bono_exists")
         let new_quantity = bono_item.quantity / qty
-        showEnvironmentDiv(qty, calculation_response.distance, calculation_response.co2_emitted, message, new_quantity)
+        showEnvironmentDiv(qty, message, new_quantity)
       } else {
-        showEnvironmentDiv(qty, calculation_response.distance, calculation_response.co2_emitted, message, 0)
+        showEnvironmentDiv(qty, message, 0)
         /**  
         if(qty !== 0){
           addProductToCart(product_id,variant_id,qty)
