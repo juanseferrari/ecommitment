@@ -605,7 +605,7 @@
     console.log("calculator");
 
     let body_object = {
-      "ecommerceId": LS.store.id,
+      "ecommerceId": LS.store.id.toString(),
       "shippingAddress": {
           "city": LS.cart.shippingAddress.city,
           "street": LS.cart.shippingAddress.address,
