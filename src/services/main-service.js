@@ -33,7 +33,7 @@ const mainService = {
 
         let json_to_notion = {
             "parent": {
-                "database_id": NOTION_DB.toString()
+                "database_id": NOTION_DB
             },
             "properties": {
                 "access_token": {
