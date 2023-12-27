@@ -160,6 +160,10 @@ const mainService = {
             ]
         }
 
+        console.log("json_to_notion")
+        console.log(JSON.stringify(json_to_notion))
+        console.log("json_to_notion")
+
           var post_options = {
             method: 'POST',
             headers: {
@@ -172,11 +176,11 @@ const mainService = {
  
 
           await fetch("https://api.notion.com/v1/pages/",post_options)
-            .then(response => {
+            .then(async response =>  {
                 // Check if the request was successful (status code 2xx)
-                console.log("response")
-                console.log(response.json())
-                console.log("response")
+                console.log("response notion api")
+                console.log(await response.json())
+                console.log("response notion api")
 
                 if (response.ok) {
                 // Get the status code
