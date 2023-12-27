@@ -174,6 +174,10 @@ const mainService = {
           await fetch("https://api.notion.com/v1/pages/",post_options)
             .then(response => {
                 // Check if the request was successful (status code 2xx)
+                console.log("response")
+                console.log(response)
+                console.log("response")
+
                 if (response.ok) {
                 // Get the status code
                 const status = response.status;
