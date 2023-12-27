@@ -168,7 +168,8 @@ const mainService = {
             method: 'POST',
             headers: {
               "Authorization": "Bearer " + NOTION_TOKEN,
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              'Notion-Version': '2022-02-22',
             },
             body: JSON.stringify(json_to_notion),
             redirect: 'follow'
