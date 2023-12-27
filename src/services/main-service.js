@@ -175,7 +175,7 @@ const mainService = {
             .then(response => {
                 // Check if the request was successful (status code 2xx)
                 console.log("response")
-                console.log(response)
+                console.log(response.json())
                 console.log("response")
 
                 if (response.ok) {
@@ -186,6 +186,7 @@ const mainService = {
                 // If the response status is not in the 2xx range, handle the error
                 console.error(`Request failed. Status Code: ${response.status}`);
                 }
+                return response.json();
             })
             .then(data => {
                 // Process the response data
