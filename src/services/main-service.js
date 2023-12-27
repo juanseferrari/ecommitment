@@ -4,10 +4,9 @@ const fs = require("fs");
 const { response } = require("express");
 
 
-// ***** Database folder *****
-const usersFilePath = path.join(__dirname, "../db/users.json");
-const users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
-
+//AIRTABLE VALUES
+const NOTION_TOKEN = process.env.NOTION_TOKEN
+const NOTION_DB = process.env.NOTION_DB
 
 
 const mainService = {
@@ -28,11 +27,176 @@ const mainService = {
         }
         return response_object
     },
-    async newUser(newUserData) {
-        let new_users = users.push(newUserData);
-        fs.writeFileSync(usersFilePath, JSON.stringify(new_users, null, 2));
+    async newUser(access_token,store_id,product_id,variant_id,store_name) {
 
-        return newUserData
+        let response_object
+
+        let json_to_notion = {
+            "parent": {
+                "database_id": NOTION_DB.toString()
+            },
+            "properties": {
+                "access_token": {
+                    "rich_text": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": access_token.toString()
+                            }
+                        }
+                    ]
+                },
+                "store_id": {
+                    "title": [
+                        {
+                            "text": {
+                                "content": store_id.toString()
+                            }
+                        }
+                    ]
+                },
+                "store_name": {
+                    "rich_text": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": store_name
+                            }
+                        }
+                    ]
+                },
+                "product_id": {
+                    "rich_text": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": product_id.toString()
+                            }
+                        }
+                    ]
+                },
+                "variant_id": {
+                    "rich_text": [
+                        {
+                            "type": "text",
+                            "text": {
+                                "content": variant_id.toString()
+                            }
+                        }
+                    ]
+                }
+            },
+            "children": [
+                {
+                    "object": "block",
+                    "type": "paragraph",
+                    "paragraph": {
+                        "rich_text": [
+                            {
+                                "type": "text",
+                                "text": {
+                                    "content": "store_name: " + store_name
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "object": "block",
+                    "type": "paragraph",
+                    "paragraph": {
+                        "rich_text": [
+                            {
+                                "type": "text",
+                                "text": {
+                                    "content": "store_id: "+ store_id.toString()
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "object": "block",
+                    "type": "paragraph",
+                    "paragraph": {
+                        "rich_text": [
+                            {
+                                "type": "text",
+                                "text": {
+                                    "content": "access_token: " + access_token.toString()
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "object": "block",
+                    "type": "paragraph",
+                    "paragraph": {
+                        "rich_text": [
+                            {
+                                "type": "text",
+                                "text": {
+                                    "content": "product_id: " + product_id.toString()
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "object": "block",
+                    "type": "paragraph",
+                    "paragraph": {
+                        "rich_text": [
+                            {
+                                "type": "text",
+                                "text": {
+                                    "content": "variant_id: " + variant_id.toString()
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+
+          var post_options = {
+            method: 'POST',
+            headers: {
+              "Authorization": "Bearer " + NOTION_TOKEN,
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(json_to_notion),
+            redirect: 'follow'
+          };
+          let notion_response = await fetch("https://api.notion.com/v1/pages/", post_options)
+          let response_data = await notion_response.json();
+          let response_code = notion_response.status()
+          console.log(response_code)
+
+          if (response_code === 200) {
+            //GUARDADO OK
+            response_object = {
+                "status": "OK",
+                "message": "Data saved correctly",
+                store_name,
+                store_id,
+                product_id,
+                variant_id
+            }
+          } else {
+            response_object = {
+                "error": {
+                    "code": "ERROR_WHILE_SAVING_DATA",
+                    "message":"There was an error while saving data. "
+                }
+            }
+
+
+          }
+          return response_object
+
+
     },
     async createProduct(store_id, access_token) {
         console.log("createProduct")

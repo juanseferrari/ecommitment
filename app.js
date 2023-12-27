@@ -14,6 +14,9 @@ app.set('views', path.join(__dirname, 'src/views'));
 app.use(logger('dev'));
 
 
+require('dotenv/config')
+
+
 // Add the following lines for CORS handling
 app.use((req, res, next) => {
 

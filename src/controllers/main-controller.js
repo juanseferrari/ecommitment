@@ -166,21 +166,13 @@ const mainController = {
       }
 
       //SAVE INTO DB
-      //TODO migrate into a better DB. 
-      let new_user_data = {
-        access_token,
-        store_id,
-        store_name,
-        product_id,
-        variant_id
-      }
 
-      let new_user_data_response = await mainService.newUser(new_user_data)
+      let new_user_data_response = await mainService.newUser(access_token,store_id,product_id,variant_id,store_name)
       console.log("new_user_data_response")
       console.log(new_user_data_response)
       console.log("new_user_data_response")
 
-      res.render("configuration", {user_data: new_user_data})
+      res.render("configuration", {user_data: new_user_data_response})
 
 
 
