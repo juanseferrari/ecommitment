@@ -169,31 +169,45 @@ const mainService = {
             body: JSON.stringify(json_to_notion),
             redirect: 'follow'
           };
-          let notion_response = await fetch("https://api.notion.com/v1/pages/", post_options)
-          let response_data = await notion_response.json();
-          let response_code = notion_response.status()
-          console.log(response_code)
+ 
 
-          if (response_code === 200) {
-            //GUARDADO OK
-            response_object = {
-                "status": "OK",
-                "message": "Data saved correctly",
-                store_name,
-                store_id,
-                product_id,
-                variant_id
-            }
-          } else {
-            response_object = {
-                "error": {
-                    "code": "ERROR_WHILE_SAVING_DATA",
-                    "message":"There was an error while saving data. "
+          await fetch("https://api.notion.com/v1/pages/",post_options)
+            .then(response => {
+                // Check if the request was successful (status code 2xx)
+                if (response.ok) {
+                // Get the status code
+                const status = response.status;
+                console.log(`Request successful. Status Code: ${status}`);
+                } else {
+                // If the response status is not in the 2xx range, handle the error
+                console.error(`Request failed. Status Code: ${response.status}`);
                 }
-            }
+            })
+            .then(data => {
+                // Process the response data
+                console.log(data);
+                response_object = {
+                    "status": "OK",
+                    "message": "Data saved correctly",
+                    store_name,
+                    store_id,
+                    product_id,
+                    variant_id
+                }
+                return response_object
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the fetch
+                console.error('Fetch error:', error);
+                response_object = {
+                    "error": {
+                        "code": "ERROR_WHILE_SAVING_DATA",
+                        "message":"There was an error while saving data.",
+                        error
+                    }
+                }
+            });   
 
-
-          }
           return response_object
 
 
