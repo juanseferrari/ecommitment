@@ -8,6 +8,10 @@ const { response } = require("express");
 const NOTION_TOKEN = process.env.NOTION_TOKEN
 const NOTION_DB = process.env.NOTION_DB
 
+// ***** Database folder *****
+const usersFilePath = path.join(__dirname, "../db/users.json");
+const users = JSON.parse(fs.readFileSync(usersFilePath, "utf-8"));
+
 
 const mainService = {
     async returnUserData(store_id) {
