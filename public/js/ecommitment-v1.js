@@ -659,7 +659,7 @@
       //} 
 
       let message = ""
-      let qty = calculation_response.quantity
+      let qty = calculation_response.response.quantity
 
 
       //Validar el address
