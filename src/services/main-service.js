@@ -4,7 +4,7 @@ const fs = require("fs");
 const { response } = require("express");
 
 
-//AIRTABLE VALUES
+//NOTION VALUES
 const NOTION_TOKEN = process.env.NOTION_TOKEN
 const NOTION_DB = process.env.NOTION_DB
 

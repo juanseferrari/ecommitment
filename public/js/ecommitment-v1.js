@@ -433,7 +433,6 @@
   async function addProductToCart(product_id, variant_id, quantity) {
     console.log("addProductToCart")
     if (LS.cart.items) {
-      console.log("LSproduct")
       //datos hardocodeados, esto deberia ser dinamico por cada usuario despues. 
       //aplicar la lógica del store_id
       const data = new URLSearchParams();
@@ -450,9 +449,9 @@
       })
         .then(response => {
           if (response.ok) {
-            console.log('success');
+            console.log('Product added to cart successfully.');
           } else {
-            console.log('error');
+            console.log('Error while adding to cart.');
           }
         })
         .catch(error => {
@@ -464,31 +463,21 @@
   }
 
   async function removeUniqueProductFromCart(quantity, vid) {
+    console.log("removeUniqueProductFromCart")
     let items_on_cart = LS.cart.items
     console.log("items_on_cart")
     console.log(items_on_cart)
     console.log("items_on_cart")
 
-    /**
-    var result = items_on_cart.filter(obj => {
-      return obj.sku === "BSG1234A"
-    })
-    */
     var result = items_on_cart.filter(obj => {
       return obj.variant_id == vid
     })
-    console.log("result")
-    console.log(result)
-    console.log("result")
+
     if (result.length === 1) {
 
-      //Existe un solo SKU
-      console.log("EXISTE UN SOLO SKU CON NUEVA FORMULA")
 
       let item_id = result[0].id.toString()
-      console.log("item_id")
-      console.log(item_id)
-      console.log("item_id")
+      console.log("item_id with variant_id "+ vid + ": "+ item_id)
 
       let body = new URLSearchParams();
       body.append(`quantity[${item_id}]`, quantity.toString());
@@ -504,18 +493,13 @@
         },
       })
         .then((response) => {
-          console.log("response")
-          console.log(response)
-          console.log("response")
 
           if (response.ok) {
             console.log("success remove cart");
-            console.log(response)
             reloadPageAfterDelay()
 
           } else {
             console.log("error remove cart");
-            console.log(response)
           }
         })
         .catch((error) => {
@@ -534,7 +518,6 @@
       window.location.reload();
     }, 400); // 1000 milliseconds = 1 second
     //switchCheckbox.checked = true;
-    console.log("reloaded")
   }
 
 
@@ -626,7 +609,7 @@
 
 
   //Check pathname
-  console.log(window.location.pathname)
+  //console.log(window.location.pathname)
 
   if (!product_id && !variant_id) {
     //get info of product
@@ -642,8 +625,6 @@
 
   // Check the current URL path
   if (window.location.pathname.startsWith('/checkout/v3/next/')) {
-    console.log("next path")
-
     //Chequear si tiene el producto cargado como bono ambiental.
 
 
@@ -681,6 +662,14 @@
         if (LS.cart.items[p].variant_id == window.localStorage.getItem('Ecommitment-variant_id')) {
           console.log("variant " + window.localStorage.getItem('Ecommitment-variant_id') + " existe")
           switchCheckbox.checked = true;
+          let cart_quantity = LS.cart.items[p].quantity
+          let calculator_quantity = qty
+          console.log("cart_quantity: " + cart_quantity)
+          console.log("calculator_quantity: " + calculator_quantity)
+          if(cart_quantity !== calculator_quantity){
+            removeUniqueProductFromCart(calculator_quantity, variant_id)
+            reloadPageAfterDelay();
+          }
         }
       }
 
@@ -739,18 +728,6 @@
   console.log("LS")
   console.log(LS)
   console.log("LS")
-  console.log("CART ITEMS")
-  console.log(LS.cart.items)
-  console.log("CART ITEMS")
-  console.log("CART SHIPPING ADDRESS")
-  console.log(LS.cart.shippingAddress)
-  console.log("CART SHIPPING ADDRESS")
-  console.log("CART SUBTOTAL")
-  console.log(LS.cart.subtotal)
-  console.log("CART SUBTOTAL")
-  console.log("CART CONTACT")
-  console.log(LS.cart.contact)
-  console.log("CART CONTACT")
 
 
 })();
