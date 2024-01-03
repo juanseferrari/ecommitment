@@ -59,7 +59,7 @@
           <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente.png" alt="">
         </a>
       <div style="display: flex;" class="ecomm-amount">
-        <p>$ ${environmentAmount * 10}</p>
+        <p>$ ${environmentAmount * 4}</p>
 
       </div>
       <!-- Description -->
