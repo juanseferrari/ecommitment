@@ -46,7 +46,7 @@
   }
 
 
-  function showEnvironmentDiv(environmentAmount, text) {
+  function showEnvironmentDiv(environmentAmount, text, price) {
 
     var newDiv = document.createElement('div');
 
@@ -59,7 +59,7 @@
           <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente.png" alt="">
         </a>
       <div style="display: flex;" class="ecomm-amount">
-        <p>$ ${environmentAmount * 4}</p>
+        <p>$ ${environmentAmount * price}</p>
 
       </div>
       <!-- Description -->
@@ -582,11 +582,13 @@
     try {
       console.log(store_id);
 
-      const response = await fetch('https://ecommitment-634117e74352.herokuapp.com/api/product-data?store_id=' + store_id, {
-        method: 'GET',
+      const response = await fetch('https://us-central1-ecommitment-qa.cloudfunctions.net/storeAndProductInfo/get-store-and-product-info', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({"ecommerceId": store_id.toString()})
+
       });
 
       if (!response.ok) {
@@ -619,6 +621,7 @@
       console.log("product_data")
       window.localStorage.setItem('Ecommitment-product_id', product_data.product_id);
       window.localStorage.setItem('Ecommitment-variant_id', product_data.variant_id);
+      window.localStorage.setItem('Ecommitment-product_price', product_data.product_price);
 
     });
   }
@@ -653,7 +656,7 @@
         console.log("TIENE ADDRESS")
         message = "¡Compensa el impacto ambiental de tu envío!"
       }
-      showEnvironmentDiv(qty, message)
+      showEnvironmentDiv(qty, message, window.localStorage.getItem('Ecommitment-product_price'))
 
 
       //PENDIENTE: SI NO TIENE EMISIONES, QUE EL CHECK ESTE VERDE.
@@ -718,6 +721,7 @@
       console.log("product_data")
       window.localStorage.setItem('Ecommitment-product_id', product_data.product_id);
       window.localStorage.setItem('Ecommitment-variant_id', product_data.variant_id);
+      window.localStorage.setItem('Ecommitment-product_price', product_data.product_price);
 
     });
 
