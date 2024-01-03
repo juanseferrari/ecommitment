@@ -15,7 +15,6 @@ const tn_client_secret = "d05ab78cfd8ec215ffe08d235cbf079a6c224c9b066b641e"
 
 const mainController = {
   home: async (req, res) => {
-
     res.render("index")
   },
   productData: async (req,res) => {
@@ -45,52 +44,6 @@ const mainController = {
 
     res.json(return_object)
 
-  },
-  calculator: async (req,res) => {
-    const cart_data = req.body.cart
-    const store_data = req.body.store
-
-    let return_object = {}
-
-    console.log("cart_data: " + cart_data)
-    console.log("store_data: " + store_data)
-
-    //Obtener información de la location del store (para calcular la distancia origen y destino)
-
-    if(!cart_data.shippingAddress.address){
-      //No hay address
-      return_object = {
-        "quantity": 0, //Esto seria que cantidad de producto le mandamos al checkout
-        "distance": 0, //Distancia del envío
-        "distance_unit": "km", //Unidad de medida
-        "co2_emitted": 0 //CO2 emitido
-        //"cart_id": cart_id, //ID del carrito
-        //cart_data ,
-        //store_data
-    }
-    } else {
-      return_object = {
-        "quantity": 8, //Esto seria que cantidad de producto le mandamos al checkout
-        "distance": 18, //Distancia del envío
-        "distance_unit": "km", //Unidad de medida
-        "co2_emitted": 12 //CO2 emitido
-        //"cart_id": cart_id, //ID del carrito
-        //cart_data ,
-        //store_data
-     }
-    }
-
-
-    //let shipping_data = cart_data.shippingAddress
-    //let cart_id = cart_data.id
-    //let items_data = cart_data.items
-    //let subtotal = cart_data.subtotal
-    //let store_id = store_data.id
-    //ANALIZAR DISTANCIAS Y VER COMO HACER ESA PARTE
-
-
-
-    res.json(return_object)
   },
   demo1: (req,res) => {
     res.render("environmentDiv1")

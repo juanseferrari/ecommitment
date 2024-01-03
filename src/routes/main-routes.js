@@ -21,7 +21,6 @@ router.get('/auth',mainController.tnOauth)
 
 /** APIS */
 router.get('/api/product-data', mainController.productData);
-router.post('/api/calculator', mainController.calculator);
 
 
 module.exports = router;
