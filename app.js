@@ -24,7 +24,8 @@ app.use((req, res, next) => {
         'https://sheetscentraldemo2.mitiendanube.com',
         "https://sheetscentral.com",
         "https://www.maniacba.com.ar",
-        "https://ecommitment.mitiendanube.com"
+        "https://ecommitment.mitiendanube.com",
+        "https://us-central1-ecommitment-qa.cloudfunctions.net"
         // Add more origins as needed
       ];
     
