@@ -643,7 +643,7 @@
       //} 
 
       let message = ""
-      let qty = calculation_response.response.quantity
+      let qty = calculation_response.fractionQuantity.quantity
 
 
       //Validar el address
