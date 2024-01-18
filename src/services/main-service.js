@@ -233,13 +233,13 @@ const mainService = {
         let json_to_tn = {
             "images": [
                 {
-                    "src": "https://cdn.pixabay.com/photo/2017/01/31/22/47/tree-2027899_640.png"
+                    "src": "https://ecommitment-634117e74352.herokuapp.com/images/only_logo.png"
                 }
             ],
             "name": {
-                "en": "Bono Ambiental",
-                "es": "Bono Ambiental",
-                "pt": "Bono Ambiental"
+                "en": "Km recorridos de envío",
+                "es": "Km recorridos de envío",
+                "pt": "Km recorridos de envío"
             },
             "handle": {
                 "en": "ecomm-bono-ambiental",
@@ -249,7 +249,7 @@ const mainService = {
             "requires_shipping": false,
             "variants": [
                 {
-                    "price": "10.00",
+                    "price": "4.00",
                     "sku": "ECOMM1234ABC"
                 }
             ]
