@@ -103,9 +103,8 @@
 
               <div class="modal-midtext-right">
                 <p>Escalante, Provincia de Chubut, en el sur de Argentina.</p>
-                <p>El proyecto consiste en la instalación de una central eólica llamada Greenfield que generará reducciones de emisiones de gases de efecto invernadero al desplazar la electricidad que sería producida por centrales eléctricas a base de combustibles fósiles.</p>
-                <br>
-                <a target="_blank" class="modal-link"  href="https://www.ecommitment.online">Ver más</a>
+                <p>El proyecto consiste en la instalación de una central eólica llamada Greenfield que generará reducciones de emisiones de gases de efecto invernadero al desplazar la electricidad que sería producida por centrales eléctricas a base de combustibles fósiles.<a class="see_more" target="_blank" class="modal-link"  href="https://www.ecommitment.online">Ver más</a>
+                </p>
               </div>
           </div>
           <div class="modal-footer">
@@ -162,6 +161,16 @@
       border: 1px solid rgba(67,67,67,0.3);
       padding: 10px;
       display: block;
+    }
+    .ecomm-main-text {
+      padding-right: 10px;
+    }
+    .see_more {
+      color: blue;
+      font-size: 20px;
+    }
+    .see_more:hover {
+      color: blue;
     }
   
     .ecomm-description-container {
@@ -371,7 +380,7 @@
   width: 70vw;
 }
 .modal-midtext-left {
-  width: 30%;
+  width: 25%;
   padding: 10px;
   position: relative;
 
@@ -385,7 +394,7 @@
 }
 
 .modal-midtext-right {
-  width: 70%;
+  width: 75%;
   padding: 10px;
   display: flex;
   flex-direction: column;
