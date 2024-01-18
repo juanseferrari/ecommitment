@@ -56,7 +56,7 @@
     <div class="title-container">
       <!-- Rounded switch -->
         <a href="https://www.ecommitment.online" target="_blank">
-          <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente.png" alt="">
+          <img class="ecomm-logo" src="https://juanseferrari.github.io/ecommitment/public/images/logo_transparente_blanco.png" alt="">
         </a>
       <div style="display: flex;" class="ecomm-amount">
         <p>$ ${environmentAmount * price}</p>
@@ -111,7 +111,7 @@
           <div class="modal-footer">
             <p>Powered by </p>
             <a href="https://www.ecommitment.online" target="_blank">
-            <img src="https://ecommitment-634117e74352.herokuapp.com/images/logo_transparente_on.png" alt="">
+              <img src="https://ecommitment-634117e74352.herokuapp.com/images/logo_transparente_on.png" alt="">
             </a> 
           </div>
         </div>
@@ -371,7 +371,7 @@
   width: 70vw;
 }
 .modal-midtext-left {
-  width: 50%;
+  width: 30%;
   padding: 10px;
   position: relative;
 
@@ -385,7 +385,7 @@
 }
 
 .modal-midtext-right {
-  width: 50%;
+  width: 70%;
   padding: 10px;
   display: flex;
   flex-direction: column;
