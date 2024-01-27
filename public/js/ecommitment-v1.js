@@ -95,13 +95,13 @@
       <div class="modal-content">
         <span class="close-btn" id="ecomm-infoClose">&times;</span>
         <div class="ecomm-modal-container">
-          <h1 class="modal-main-title">Parque eólico Chubut</h1>
           <div class="modal-main-container">
             <div class="modal-midtext-left">
               <img src="https://ecommitment-634117e74352.herokuapp.com/images/eolico1.png" alt="">
             </div>
 
               <div class="modal-midtext-right">
+                <h1 class="modal-main-title">Parque eólico Chubut</h1>
                 <p>Escalante, Provincia de Chubut, en el sur de Argentina.</p>
                 <p>El proyecto consiste en la instalación de una central eólica llamada Greenfield que generará reducciones de emisiones de gases de efecto invernadero al desplazar la electricidad que sería producida por centrales eléctricas a base de combustibles fósiles.<a class="see_more" target="_blank" class="modal-link"  href="https://www.ecommitment.online">Ver más</a>
                 </p>
@@ -360,8 +360,8 @@
     .close-btn {
       position: absolute;
       top: 10px;
-      right: 10px;
-      font-size: 20px;
+      right: 15px;
+      font-size: 30px;
       cursor: pointer;
     }
 
@@ -372,9 +372,7 @@
 .ecomm-modal-container {
   display: block;
 }
-.modal-main-title {
-  text-align: center;
-}
+
 .modal-main-container {
   display: flex;
   width: 70vw;
