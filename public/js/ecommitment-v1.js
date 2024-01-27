@@ -105,14 +105,15 @@
                 <p>Escalante, Provincia de Chubut, en el sur de Argentina.</p>
                 <p>El proyecto consiste en la instalación de una central eólica llamada Greenfield que generará reducciones de emisiones de gases de efecto invernadero al desplazar la electricidad que sería producida por centrales eléctricas a base de combustibles fósiles.<a class="see_more" target="_blank" class="modal-link"  href="https://www.ecommitment.online">Ver más</a>
                 </p>
+                  <div class="modal-footer">
+                    <p>Powered by </p>
+                    <a href="https://www.ecommitment.online" target="_blank">
+                      <img src="https://ecommitment-634117e74352.herokuapp.com/images/logo_transparente_on.png" alt="">
+                    </a> 
+                  </div>
               </div>
           </div>
-          <div class="modal-footer">
-            <p>Powered by </p>
-            <a href="https://www.ecommitment.online" target="_blank">
-              <img src="https://ecommitment-634117e74352.herokuapp.com/images/logo_transparente_on.png" alt="">
-            </a> 
-          </div>
+
         </div>
       </div>
     </div>
@@ -485,7 +486,7 @@
 
 
       let item_id = result[0].id.toString()
-      console.log("item_id with variant_id "+ vid + ": "+ item_id)
+      console.log("item_id with variant_id " + vid + ": " + item_id)
 
       let body = new URLSearchParams();
       body.append(`quantity[${item_id}]`, quantity.toString());
@@ -535,10 +536,10 @@
     let body_object = {
       "ecommerceId": LS.store.id.toString(),
       "shippingAddress": {
-          "city": LS.cart.shippingAddress.city,
-          "street": LS.cart.shippingAddress.address,
-          "number": parseInt(LS.cart.shippingAddress.number),
-          "zipcode": parseInt(LS.cart.shippingAddress.zipcode)
+        "city": LS.cart.shippingAddress.city,
+        "street": LS.cart.shippingAddress.address,
+        "number": parseInt(LS.cart.shippingAddress.number),
+        "zipcode": parseInt(LS.cart.shippingAddress.zipcode)
       }
     }
     try {
@@ -595,7 +596,7 @@
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({"ecommerceId": store_id.toString()})
+        body: JSON.stringify({ "ecommerceId": store_id.toString() })
 
       });
 
@@ -677,7 +678,7 @@
           let calculator_quantity = qty
           console.log("cart_quantity: " + cart_quantity)
           console.log("calculator_quantity: " + calculator_quantity)
-          if(cart_quantity !== calculator_quantity){
+          if (cart_quantity !== calculator_quantity) {
             removeUniqueProductFromCart(calculator_quantity, variant_id)
             reloadPageAfterDelay();
           }
