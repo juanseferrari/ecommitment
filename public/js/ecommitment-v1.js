@@ -434,6 +434,7 @@
   width: 100px;
   display: flex;
   justify-content: end;
+  font-size: 15px;
 }
 .modal-link {
   display: flex;
