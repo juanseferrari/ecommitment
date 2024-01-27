@@ -394,7 +394,7 @@
   width: 70vw;
 }
 .modal-midtext-left {
-  width: 25%;
+  width: 35%;
   padding: 10px;
   position: relative;
 
@@ -407,7 +407,7 @@
 }
 
 .modal-midtext-right {
-  width: 75%;
+  width: 65%;
   padding: 10px;
   display: flex;
   flex-direction: column;
