@@ -14,6 +14,7 @@ router.get('/config', mainController.configuration);
 router.get('/demo1', mainController.demo1);
 router.get('/demo2', mainController.demo2);
 router.get('/demo3', mainController.demo3);
+router.get('/demo4', mainController.demo4);
 
 /* OAUTH */
 

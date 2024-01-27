@@ -181,11 +181,11 @@
     }
   
     .ecomm-description-container p {
-      font-size: 20px;
+      font-size: 15px;
     }
   
     .ecomm-logo {
-      height: 34px;
+      height: 27px;
     }
   
     .title-container {
@@ -199,7 +199,7 @@
       cursor: pointer;
     }
     .ecomm-amount p{
-      font-size: 24px;
+      font-size: 20px;
       margin: 0;
     }
   
@@ -294,8 +294,8 @@
     .info-icon {
       color: grey;
       cursor: pointer;
-      height: 30px;
-      width: 30px;
+      height: 25px;
+      width: 25px;
     }
   
     .info-icon-svg {
@@ -388,8 +388,7 @@
 
 .modal-midtext-left img {
   max-width: 100%;
-  border-radius: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7), 0 -4px 8px rgba(0, 0, 0, 0.7);
+  border-radius: 15px;
 
 }
 
@@ -661,11 +660,11 @@
       if (!LS.cart.shippingAddress.address) {
         //Si no hay address de destino (osea no hay nada que pagar, hacer otra cosa. )
         console.log("NO TIENE ADDRESS")
-        message = "¡Compensa el impacto ambiental de tu envío!"
+        message = "¡Compensá el impacto ambiental de tu envío!"
         qty = 1
       } else {
         console.log("TIENE ADDRESS")
-        message = "¡Compensa el impacto ambiental de tu envío!"
+        message = "¡Compensá el impacto ambiental de tu envío!"
       }
       showEnvironmentDiv(qty, message, window.localStorage.getItem('Ecommitment-product_price'))
 

@@ -54,6 +54,9 @@ const mainController = {
   demo3: (req,res) => {
     res.render("environmentDiv3")
   },
+  demo4: (req,res) => {
+    res.render("environmentDiv4")
+  },
   tnOauth: async (req, res) => {
     let code = req.query.code
 
