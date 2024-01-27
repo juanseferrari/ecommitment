@@ -105,7 +105,7 @@
               <div class="modal-midtext-right">
                 <h1 class="modal-main-title title2">Parque eólico Chubut</h1>
                 <p>Escalante, Provincia de Chubut, en el sur de Argentina.</p>
-                <p>El proyecto consiste en la instalación de una central eólica llamada Greenfield que generará reducciones de emisiones de gases de efecto invernadero al desplazar la electricidad que sería producida por centrales eléctricas a base de combustibles fósiles.<a class="see_more" target="_blank" class="modal-link"  href="https://www.ecommitment.online">Ver más</a>
+                <p>El proyecto consiste en la instalación de una central eólica llamada Greenfield que generará reducciones de emisiones de gases de efecto invernadero al desplazar la electricidad que sería producida por centrales eléctricas a base de combustibles fósiles. <a class="see_more" target="_blank" class="modal-link"  href="https://www.ecommitment.online">Ver más</a>
                 </p>
                   <div class="modal-footer">
                     <p>Powered by </p>
@@ -133,10 +133,12 @@
     @media only screen and (max-width: 767px) {
 
       .title1 {
-        display: block
+        display: block!important;
+        text-align: center;
+        margin-top: 40px;
       }
       .title2 {
-        display: none
+        display: none!important;
       }
       /* Your mobile-specific styles go here */
       .select-button {
